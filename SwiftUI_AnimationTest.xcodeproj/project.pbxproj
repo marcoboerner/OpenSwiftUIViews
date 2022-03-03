@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201ADE6527CFFA5800B15902 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADE6427CFFA5800B15902 /* ContentView.swift */; };
+		201ADF1727D144FC00B15902 /* OpenScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADF1627D144FC00B15902 /* OpenScrollView.swift */; };
+		201ADF1927D1453800B15902 /* OpenScrollViewReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADF1827D1453800B15902 /* OpenScrollViewReader.swift */; };
+		201ADF1B27D145D300B15902 /* OpenScrollViewBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADF1A27D145D300B15902 /* OpenScrollViewBlocking.swift */; };
 		2052362E254AE1380007F25E /* ContentView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2052362D254AE1380007F25E /* ContentView5.swift */; };
 		2053F6FF27CBAA5200EC9B77 /* ContentView8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053F6FE27CBAA5200EC9B77 /* ContentView8.swift */; };
 		2053F70127CC093B00EC9B77 /* ContentView9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053F70027CC093B00EC9B77 /* ContentView9.swift */; };
 		20907AA925AB58B300636D4D /* ContentView7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20907AA825AB58B300636D4D /* ContentView7.swift */; };
 		20D88F1225502E2400FE28AA /* ContentView6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D88F1125502E2400FE28AA /* ContentView6.swift */; };
 		20F9E91125489BC200DF13DA /* SwiftUI_AnimationTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */; };
-		20F9E91325489BC200DF13DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91225489BC200DF13DA /* ContentView.swift */; };
+		20F9E91325489BC200DF13DA /* ContentView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91225489BC200DF13DA /* ContentView1.swift */; };
 		20F9E91525489BC400DF13DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91425489BC400DF13DA /* Assets.xcassets */; };
 		20F9E91825489BC400DF13DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91725489BC400DF13DA /* Preview Assets.xcassets */; };
 		20F9E9212548A12900DF13DA /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E9202548A12900DF13DA /* ContentView2.swift */; };
@@ -22,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		201ADE6427CFFA5800B15902 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		201ADF1627D144FC00B15902 /* OpenScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenScrollView.swift; sourceTree = "<group>"; };
+		201ADF1827D1453800B15902 /* OpenScrollViewReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenScrollViewReader.swift; sourceTree = "<group>"; };
+		201ADF1A27D145D300B15902 /* OpenScrollViewBlocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenScrollViewBlocking.swift; sourceTree = "<group>"; };
 		2052362D254AE1380007F25E /* ContentView5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView5.swift; sourceTree = "<group>"; };
 		2053F6FE27CBAA5200EC9B77 /* ContentView8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView8.swift; sourceTree = "<group>"; };
 		2053F70027CC093B00EC9B77 /* ContentView9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView9.swift; sourceTree = "<group>"; };
@@ -29,7 +37,7 @@
 		20D88F1125502E2400FE28AA /* ContentView6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView6.swift; sourceTree = "<group>"; };
 		20F9E90D25489BC200DF13DA /* SwiftUI_AnimationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_AnimationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_AnimationTestApp.swift; sourceTree = "<group>"; };
-		20F9E91225489BC200DF13DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		20F9E91225489BC200DF13DA /* ContentView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView1.swift; sourceTree = "<group>"; };
 		20F9E91425489BC400DF13DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20F9E91725489BC400DF13DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20F9E91925489BC400DF13DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +57,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		201ADF1527D144BE00B15902 /* trial and error */ = {
+			isa = PBXGroup;
+			children = (
+				20F9E91225489BC200DF13DA /* ContentView1.swift */,
+				20F9E9202548A12900DF13DA /* ContentView2.swift */,
+				20F9E9232548BA5B00DF13DA /* ContentView3.swift */,
+				20F9E9262548BDF800DF13DA /* ContentView4.swift */,
+				2052362D254AE1380007F25E /* ContentView5.swift */,
+				20D88F1125502E2400FE28AA /* ContentView6.swift */,
+				20907AA825AB58B300636D4D /* ContentView7.swift */,
+				2053F6FE27CBAA5200EC9B77 /* ContentView8.swift */,
+				2053F70027CC093B00EC9B77 /* ContentView9.swift */,
+			);
+			path = "trial and error";
+			sourceTree = "<group>";
+		};
 		20F9E90425489BC200DF13DA = {
 			isa = PBXGroup;
 			children = (
@@ -68,16 +92,12 @@
 		20F9E90F25489BC200DF13DA /* SwiftUI_AnimationTest */ = {
 			isa = PBXGroup;
 			children = (
+				201ADF1527D144BE00B15902 /* trial and error */,
 				20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */,
-				20F9E91225489BC200DF13DA /* ContentView.swift */,
-				20F9E9202548A12900DF13DA /* ContentView2.swift */,
-				20F9E9232548BA5B00DF13DA /* ContentView3.swift */,
-				20F9E9262548BDF800DF13DA /* ContentView4.swift */,
-				2052362D254AE1380007F25E /* ContentView5.swift */,
-				20D88F1125502E2400FE28AA /* ContentView6.swift */,
-				20907AA825AB58B300636D4D /* ContentView7.swift */,
-				2053F6FE27CBAA5200EC9B77 /* ContentView8.swift */,
-				2053F70027CC093B00EC9B77 /* ContentView9.swift */,
+				201ADE6427CFFA5800B15902 /* ContentView.swift */,
+				201ADF1627D144FC00B15902 /* OpenScrollView.swift */,
+				201ADF1A27D145D300B15902 /* OpenScrollViewBlocking.swift */,
+				201ADF1827D1453800B15902 /* OpenScrollViewReader.swift */,
 				20F9E91425489BC400DF13DA /* Assets.xcassets */,
 				20F9E91925489BC400DF13DA /* Info.plist */,
 				20F9E91625489BC400DF13DA /* Preview Content */,
@@ -162,16 +182,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				201ADF1B27D145D300B15902 /* OpenScrollViewBlocking.swift in Sources */,
 				2052362E254AE1380007F25E /* ContentView5.swift in Sources */,
 				20F9E9212548A12900DF13DA /* ContentView2.swift in Sources */,
 				2053F70127CC093B00EC9B77 /* ContentView9.swift in Sources */,
 				20907AA925AB58B300636D4D /* ContentView7.swift in Sources */,
-				20F9E91325489BC200DF13DA /* ContentView.swift in Sources */,
+				201ADE6527CFFA5800B15902 /* ContentView.swift in Sources */,
+				20F9E91325489BC200DF13DA /* ContentView1.swift in Sources */,
+				201ADF1927D1453800B15902 /* OpenScrollViewReader.swift in Sources */,
 				20D88F1225502E2400FE28AA /* ContentView6.swift in Sources */,
 				20F9E9242548BA5B00DF13DA /* ContentView3.swift in Sources */,
 				2053F6FF27CBAA5200EC9B77 /* ContentView8.swift in Sources */,
 				20F9E9272548BDF800DF13DA /* ContentView4.swift in Sources */,
 				20F9E91125489BC200DF13DA /* SwiftUI_AnimationTestApp.swift in Sources */,
+				201ADF1727D144FC00B15902 /* OpenScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
