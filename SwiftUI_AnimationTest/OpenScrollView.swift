@@ -8,6 +8,23 @@
 import Foundation
 import SwiftUI
 
+// MARK: - Observable Object
+
+class ScrollDestination: ObservableObject, Equatable {
+    static func == (lhs: ScrollDestination, rhs: ScrollDestination) -> Bool {
+        lhs.frame == rhs.frame &&
+        lhs.point == rhs.point
+    }
+
+    @Published var frame: CGRect = .zero
+    @Published var point: CGPoint = .zero
+}
+
+struct DestinationPreferenceKey: PreferenceKey {
+    static func reduce(value: inout ScrollDestination, nextValue: () -> ScrollDestination) {}
+    static var defaultValue: ScrollDestination = ScrollDestination()
+}
+
 // MARK: - OpenScrollView
 
 /// Use this ScrolLView to prevent other gestures from blocking of being blocked by default.
@@ -25,7 +42,7 @@ struct OpenScrollView<Content>: View where Content: View {
     @State var axis: Axis.Set = [.vertical]
 
     /// This parameter is changed through the proxy and the goTo method.
-    @EnvironmentObject private var scrollDestination: ScrollDestination
+    @State private var scrollDestination = ScrollDestination()
 
     var content: () -> Content
 
@@ -66,6 +83,7 @@ struct OpenScrollView<Content>: View where Content: View {
                     accumulatedOffset.height -= point.y
                     accumulatedOffset.width -= point.x
                 }
+                .preference(key: DestinationPreferenceKey.self, value: scrollDestination)
                 // Blocking is set by the blocking modifier
                 .onPreferenceChange(BlockScrollingPreferenceKey.self) { blockScrolling in
                     self.scrollingIsBlocked = blockScrolling

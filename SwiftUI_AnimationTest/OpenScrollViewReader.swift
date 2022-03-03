@@ -8,20 +8,13 @@
 import Foundation
 import SwiftUI
 
-// MARK: - Observable Object
-
-class ScrollDestination: ObservableObject {
-    @Published var frame: CGRect = .zero
-    @Published var point: CGPoint = .zero
-}
-
 // MARK: - OpenScrollViewReader
 
 /// Use with OpenScrollView to programmatically scroll to a specific location identified and set with the customID modifier.
 struct OpenScrollViewReader<Content>: View where Content: View {
 
     @State var frames: [AnyHashable: CGRect] = [:]
-    @StateObject var scrollDestination = ScrollDestination()
+    @State var scrollDestination = ScrollDestination()
 
     var content: (OpenScrollViewProxy) -> Content
 
@@ -30,7 +23,9 @@ struct OpenScrollViewReader<Content>: View where Content: View {
         let customScrollViewProxy = OpenScrollViewProxy(frames: frames, scrollDestination: scrollDestination)
 
         return self.content(customScrollViewProxy)
-            .environmentObject(scrollDestination)
+            .onPreferenceChange(DestinationPreferenceKey.self) { destination in
+                self.scrollDestination = destination
+            }
             .onPreferenceChange(LocationPreferenceKey.self) { newFrames in
                 self.frames = newFrames
             }
