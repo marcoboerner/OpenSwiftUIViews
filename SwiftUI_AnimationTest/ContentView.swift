@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var goTo: Int = 25
+    @State var goTo: Int = 3
 
     var body: some View {
         VStack {
@@ -18,7 +18,7 @@ struct ContentView: View {
             OpenScrollViewReader { proxy in
                 OpenScrollView() {
                     LazyVStack(spacing: 10) {
-                        ForEach(0..<99, id: \.self) { id in
+                        ForEach(0..<3, id: \.self) { id in
                             JustSomeElement(stringNumber: "\(id)")
                                 .customID(id)
                                 .frame(maxWidth: .infinity)
@@ -42,7 +42,6 @@ struct ContentView: View {
 }
 
 // MARK: - List Element
-
 
 struct JustSomeElement: View {
 

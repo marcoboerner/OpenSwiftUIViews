@@ -58,8 +58,10 @@ struct OpenScrollView<Content>: View where Content: View {
 
                         // ... in order to bounce back to the most outside view here ...
                         .onChange(of: accumulatedOffset.height) { _ in
-                            if accumulatedOffset.height > 0 {
+                            // bounce back to the top, also if the view does not have enough items to fill the scroll view.
+                            if accumulatedOffset.height > 0 || innerGeometry.size.height <= outerGeometry.size.height {
                                 accumulatedOffset.height = 0
+                            // bounce to the bottom
                             } else if abs(accumulatedOffset.height) > innerGeometry.size.height - outerGeometry.size.height {
                                 accumulatedOffset.height = -1*(innerGeometry.size.height - outerGeometry.size.height)
                             }
