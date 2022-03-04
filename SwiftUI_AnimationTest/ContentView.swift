@@ -18,7 +18,7 @@ struct ContentView: View {
             OpenScrollViewReader { proxy in
                 OpenScrollView() {
                     LazyVStack(spacing: 10) {
-                        ForEach(0..<3, id: \.self) { id in
+                        ForEach(0..<30, id: \.self) { id in
                             JustSomeElement(stringNumber: "\(id)")
                                 .customID(id)
                                 .frame(maxWidth: .infinity)

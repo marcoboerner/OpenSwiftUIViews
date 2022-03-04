@@ -66,11 +66,22 @@ struct LocationPreferenceKey: PreferenceKey {
 extension View {
     /// Assign a custom ID to the elements to be used by the OpenScrollViewReader
     func customID<ID>(_ value: ID) -> some View where ID: Hashable {
-        background(
-            GeometryReader { geometry in
-                Color.clear
-                    .preference(key: LocationPreferenceKey.self, value: [value: geometry.frame(in: .named(OpenScrollViewProxy.customScrollViewCoordinateSpaceName))])
-            }
-        )
+        modifier(CustomID(value: value))
+    }
+}
+
+/// Assign a custom ID to the elements to be used by the OpenScrollViewReader
+struct CustomID<ID: Hashable>: ViewModifier {
+
+    var value: ID
+
+    func body(content: Content) -> some View {
+        content
+            .background(
+                GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: LocationPreferenceKey.self, value: [value: geometry.frame(in: .named(OpenScrollViewProxy.customScrollViewCoordinateSpaceName))])
+                }
+            )
     }
 }

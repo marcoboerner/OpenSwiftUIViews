@@ -76,7 +76,7 @@ struct OpenScrollView<Content>: View where Content: View {
                         }
                 })
                 // The actual offset of the view is applied here, depending on the axis.
-                .offset(x: axis.contains(.horizontal) ? accumulatedOffset.width + offset.width : 0 , y: axis.contains(.vertical) ? accumulatedOffset.height + offset.height : 0)
+                .offset(x: axis.contains(.horizontal) ? accumulatedOffset.width + offset.width : 0, y: axis.contains(.vertical) ? accumulatedOffset.height + offset.height : 0)
                 // Currently only offset and accumulated offset changes are animated
                 .animation(.spring(), value: offset)
                 .animation(.spring(), value: accumulatedOffset)
