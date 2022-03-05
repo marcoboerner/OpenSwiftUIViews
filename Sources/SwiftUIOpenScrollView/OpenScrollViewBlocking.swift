@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - Blocking
 
-extension View {
+public extension View {
     /// Pass in a state that is supposed to block the OpenScrollView scrolling.
     func blockScrolling(_ value: Bool) -> some View {
         preference(key: BlockScrollingPreferenceKey.self, value: value)

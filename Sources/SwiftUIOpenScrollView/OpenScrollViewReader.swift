@@ -11,14 +11,18 @@ import SwiftUI
 // MARK: - OpenScrollViewReader
 
 /// Use with OpenScrollView to programmatically scroll to a specific location identified and set with the customID modifier.
-struct OpenScrollViewReader<Content>: View where Content: View {
+public struct OpenScrollViewReader<Content>: View where Content: View {
+
+    public init(content: @escaping (OpenScrollViewProxy) -> Content) {
+        self.content = content
+    }
 
     @State var frames: [AnyHashable: CGRect] = [:]
     @State var scrollDestination = ScrollDestination()
 
     var content: (OpenScrollViewProxy) -> Content
 
-    var body: some View {
+    public var body: some View {
 
         let customScrollViewProxy = OpenScrollViewProxy(frames: frames, scrollDestination: scrollDestination)
 
@@ -33,7 +37,7 @@ struct OpenScrollViewReader<Content>: View where Content: View {
 }
 
 /// Use the proxy to scroll to a specific location.
-struct OpenScrollViewProxy {
+public struct OpenScrollViewProxy {
     static let customScrollViewCoordinateSpaceName = "CustomScrollView"
 
     @State var frames: [AnyHashable: CGRect]
@@ -63,7 +67,7 @@ struct LocationPreferenceKey: PreferenceKey {
     static var defaultValue: [AnyHashable: CGRect] = [:]
 }
 
-extension View {
+public extension View {
     /// Assign a custom ID to the elements to be used by the OpenScrollViewReader
     func customID<ID>(_ value: ID) -> some View where ID: Hashable {
         modifier(CustomID(value: value))
@@ -71,11 +75,14 @@ extension View {
 }
 
 /// Assign a custom ID to the elements to be used by the OpenScrollViewReader
-struct CustomID<ID: Hashable>: ViewModifier {
+public struct CustomID<ID: Hashable>: ViewModifier {
+    public init(value: ID) {
+        self.value = value
+    }
 
     var value: ID
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .background(
                 GeometryReader { geometry in

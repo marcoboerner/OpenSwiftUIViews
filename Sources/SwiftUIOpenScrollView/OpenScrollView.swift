@@ -29,7 +29,11 @@ struct DestinationPreferenceKey: PreferenceKey {
 
 /// Use this ScrolLView to prevent other gestures from blocking of being blocked by default.
 /// Clipping is deactivated by default and not all ScrollView features are implemented or will behave the same.
-struct OpenScrollView<Content>: View where Content: View {
+public struct OpenScrollView<Content>: View where Content: View {
+    public init(content: @escaping () -> Content) {
+        self.content = content
+    }
+
 
     /// The current offset of the view content
     @State private var offset: CGSize = .zero
@@ -46,7 +50,7 @@ struct OpenScrollView<Content>: View where Content: View {
 
     var content: () -> Content
 
-    var body: some View {
+    public var body: some View {
 
         // An outer geometry ...
         GeometryReader { outerGeometry in
