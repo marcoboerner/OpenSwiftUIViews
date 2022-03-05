@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIOpenScrollView
 
 struct ContentView: View {
 
