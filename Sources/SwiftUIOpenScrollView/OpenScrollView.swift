@@ -8,21 +8,9 @@
 import Foundation
 import SwiftUI
 
-// MARK: - Observable Object
-
-class ScrollDestination: ObservableObject, Equatable {
-    static func == (lhs: ScrollDestination, rhs: ScrollDestination) -> Bool {
-        lhs.frame == rhs.frame &&
-        lhs.point == rhs.point
-    }
-
-    @Published var frame: CGRect = .zero
-    @Published var point: CGPoint = .zero
-}
-
 struct DestinationPreferenceKey: PreferenceKey {
-    static func reduce(value: inout ScrollDestination, nextValue: () -> ScrollDestination) {}
-    static var defaultValue: ScrollDestination = ScrollDestination()
+    static func reduce(value: inout Location, nextValue: () -> Location) {}
+    static var defaultValue: Location = Location()
 }
 
 // MARK: - OpenScrollView
@@ -33,7 +21,6 @@ public struct OpenScrollView<Content>: View where Content: View {
     public init(content: @escaping () -> Content) {
         self.content = content
     }
-
 
     /// The current offset of the view content
     @State private var offset: CGSize = .zero
@@ -46,7 +33,7 @@ public struct OpenScrollView<Content>: View where Content: View {
     @State var axis: Axis.Set = [.vertical]
 
     /// This parameter is changed through the proxy and the goTo method.
-    @State private var scrollDestination = ScrollDestination()
+    @State private var scrollDestination = Location()
 
     var content: () -> Content
 
@@ -85,9 +72,9 @@ public struct OpenScrollView<Content>: View where Content: View {
                 .animation(.spring(), value: offset)
                 .animation(.spring(), value: accumulatedOffset)
                 // Scrolling is triggered by the proxy's goTo method
-                .onReceive(scrollDestination.$point) { point in
-                    accumulatedOffset.height -= point.y
-                    accumulatedOffset.width -= point.x
+                .onReceive(scrollDestination.$anchorPoint) { anchorPoint in
+                    accumulatedOffset.height -= anchorPoint.y
+                    accumulatedOffset.width -= anchorPoint.x
                 }
                 .preference(key: DestinationPreferenceKey.self, value: scrollDestination)
                 // Blocking is set by the blocking modifier
@@ -109,6 +96,6 @@ public struct OpenScrollView<Content>: View where Content: View {
                         }
                 )
         }
-        .coordinateSpace(name: OpenScrollViewProxy.customScrollViewCoordinateSpaceName)
+        .coordinateSpace(name: OpenScrollViewProxy.openScrollViewCoordinateSpaceName)
     }
 }
