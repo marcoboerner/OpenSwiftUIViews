@@ -22,26 +22,43 @@ struct DraggedPreferenceKey: PreferenceKey {
 public extension View {
     /// Will set the dragged view to be read by the OpenDragAndDropReader.
     ///  - Attention: Most likely it will have to be attached before any offset etc. modifiers.
-    func dragItem<ID>(_ isDragging: Binding<Bool>, value: ID) -> some View where ID: Hashable {
-        modifier(DragItem(isDragging, value: value))
+    func dragItem<ID>(_ isDragging: Binding<Bool>, value: ID, onDrag: ((OpenDragAndDropProxy) -> Void)? = nil, onDrop: ((OpenDragAndDropProxy) -> Void)? = nil, onDragOver: ((OpenDragAndDropProxy) -> Void)? = nil, onCancel: ((OpenDragAndDropProxy) -> Void)? = nil) -> some View where ID: Hashable {
+        modifier(DragItem(isDragging, value: value, onDrag: onDrag, onDrop:  onDrop, onDragOver: onDragOver, onCancel: onCancel))
     }
 }
 
 /// Will set the dragged view to be read by the OpenDragAndDropReader.
 ///  - Attention: Most likely it will have to be attached before any offset etc. modifiers.
 public struct DragItem<ID: Hashable>: ViewModifier {
-    public init(_ isDragging: Binding<Bool>, value: ID) {
+    public init(_ isDragging: Binding<Bool>, value: ID, onDrag: ((OpenDragAndDropProxy) -> Void)? = nil, onDrop: ((OpenDragAndDropProxy) -> Void)? = nil, onDragOver: ((OpenDragAndDropProxy) -> Void)? = nil, onCancel: ((OpenDragAndDropProxy) -> Void)? = nil) {
         self._isDragging = isDragging
         self.value = value
+        self.onDrag = onDrag
+        self.onDrop = onDrop
+        self.onDragOver = onDragOver
+        self.onCancel = onCancel
     }
 
-    var offset: CGSize = .zero
     @Binding var isDragging: Bool
     var value: ID
 
+    @EnvironmentObject var openDragAndDropProxy: OpenDragAndDropProxy
+
+    var onDrag: ((OpenDragAndDropProxy) -> Void)?
+    var onDrop: ((OpenDragAndDropProxy) -> Void)?
+    var onDragOver: ((OpenDragAndDropProxy) -> Void)?
+    var onCancel: ((OpenDragAndDropProxy) -> Void)?
+
     public func body(content: Content) -> some View {
-        content
-            .offset(offset)
+
+        if isDragging {
+            onDrag?(openDragAndDropProxy)
+        } else {
+            onCancel?(openDragAndDropProxy)
+        }
+
+
+        return content
             .background(
                 GeometryReader { geometry in
                     if isDragging {
@@ -91,3 +108,6 @@ public struct OpenDragItem<ID, Content>: View where Content: View, ID: Hashable 
             )
     }
 }
+
+
+// TODO: - Maybe create a drag item that has its own gesture with simple offset etc in it. Works for simpler setups where there are no other gestures. Otherwise the recommended way is to setup your own gesture and let the view know.
