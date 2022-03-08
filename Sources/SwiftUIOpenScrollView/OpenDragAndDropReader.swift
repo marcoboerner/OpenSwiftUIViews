@@ -31,6 +31,7 @@ public struct OpenDragAndDropReader<Content>: View where Content: View {
             .onPreferenceChange(DropDestinationPreferenceKey.self) { newLocation in
                 self.dropDestinationLocations = newLocation
             }
+            .environmentObject(openDragAndDropProxy)
     }
 }
 

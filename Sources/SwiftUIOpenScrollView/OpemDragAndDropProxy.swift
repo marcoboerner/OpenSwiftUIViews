@@ -11,7 +11,7 @@ import SwiftUI
 
 /// Use the proxy to scroll to a specific location.
 /// - Note: use .onChange() with individual computed properties and not the while proxy to only receive updates when the result of the properties changes.
-public struct OpenDragAndDropProxy: Equatable {
+public class OpenDragAndDropProxy: Equatable, ObservableObject {
     public static func == (lhs: OpenDragAndDropProxy, rhs: OpenDragAndDropProxy) -> Bool {
         lhs.dropDestinationLocations == rhs.dropDestinationLocations &&
         lhs.draggedItemLocation == rhs.draggedItemLocation
@@ -19,12 +19,25 @@ public struct OpenDragAndDropProxy: Equatable {
 
     // static let customScrollViewCoordinateSpaceName = "OpenDragAndDrop"
 
+    init(dropDestinationLocations: [AnyHashable: CGRect], draggedItemLocation: IDLocation) {
+        self.dropDestinationLocations = dropDestinationLocations
+        self.draggedItemLocation = draggedItemLocation
+    }
+
     @State public var dropDestinationLocations: [AnyHashable: CGRect]
     @State public var draggedItemLocation: IDLocation
 
 }
 
 // MARK: - Intersection with drop destinations
+
+extension OpenDragAndDropProxy {
+
+    public func callAsFunction<ID: Hashable>(for: ID) -> Self {
+        return self
+    }
+}
+
 
 extension OpenDragAndDropProxy {
     public var intersectingDestinations: [IDLocation] {

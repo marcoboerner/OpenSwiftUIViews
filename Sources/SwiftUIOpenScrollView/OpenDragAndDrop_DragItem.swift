@@ -35,11 +35,13 @@ public struct DragItem<ID: Hashable>: ViewModifier {
         self.value = value
     }
 
+    var offset: CGSize = .zero
     @Binding var isDragging: Bool
     var value: ID
 
     public func body(content: Content) -> some View {
         content
+            .offset(offset)
             .background(
                 GeometryReader { geometry in
                     if isDragging {
@@ -55,3 +57,37 @@ public struct DragItem<ID: Hashable>: ViewModifier {
     }
 }
 
+// MARK: - Drag Item
+
+public struct OpenDragItem<ID, Content>: View where Content: View, ID: Hashable {
+
+    public init(_ isDragging: Binding<Bool>, value: ID, content: @escaping (OpenDragAndDropProxy) -> Content) {
+        self._isDragging = isDragging
+        self.value = value
+        self.content = content
+    }
+
+    @Binding var isDragging: Bool
+    var value: ID
+
+    var content: (OpenDragAndDropProxy) -> Content
+
+    @EnvironmentObject var openDragAndDropProxy: OpenDragAndDropProxy
+
+    public var body: some View {
+
+        self.content(openDragAndDropProxy)
+            .background(
+                GeometryReader { geometry in
+                    if isDragging {
+                        Color.clear
+                            .preference(
+                                key: DraggedPreferenceKey.self,
+                                value: IDLocation(id: value, frame: geometry.frame(in: .global)))
+                    } else {
+                        Color.clear
+                    }
+                }
+            )
+    }
+}
