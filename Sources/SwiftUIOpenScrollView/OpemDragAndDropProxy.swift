@@ -19,7 +19,7 @@ public class OpenDragAndDropProxy: Equatable, ObservableObject {
 
     // static let customScrollViewCoordinateSpaceName = "OpenDragAndDrop"
 
-    init(dropDestinationLocations: [AnyHashable: CGRect], draggedItemLocation: IDLocation) {
+    init(dropDestinationLocations: [AnyHashable: CGRect] = [:], draggedItemLocation: IDLocation = IDLocation()) {
         self.dropDestinationLocations = dropDestinationLocations
         self.draggedItemLocation = draggedItemLocation
     }

@@ -20,12 +20,18 @@ public struct OpenDragAndDropReader<Content>: View where Content: View {
 
     var content: (OpenDragAndDropProxy) -> Content
 
+    // FIXME: - I moved the proxy out of the body and made default init parameters. maybe I can move that back of I fix the other error
+
+    @ObservedObject var openDragAndDropProxy = OpenDragAndDropProxy()
+
     public var body: some View {
 
-        let openDragAndDropProxy = OpenDragAndDropProxy(dropDestinationLocations: dropDestinationLocations, draggedItemLocation: draggedItemLocation)
+        openDragAndDropProxy.dropDestinationLocations = dropDestinationLocations
+        openDragAndDropProxy.draggedItemLocation = draggedItemLocation
 
         return self.content(openDragAndDropProxy)
-            .onPreferenceChange(DraggedPreferenceKey.self) { dragged in
+            .onPreferenceChange(OpenDraggedItemPreferenceKey.self) { dragged in
+                print("draggedItemLocation")
                 self.draggedItemLocation = dragged
             }
             .onPreferenceChange(DropDestinationPreferenceKey.self) { newLocation in
@@ -34,6 +40,8 @@ public struct OpenDragAndDropReader<Content>: View where Content: View {
             .environmentObject(openDragAndDropProxy)
     }
 }
+
+// TODO: - Maybe I can implement the same onDragged and on Dropped methods here, even the same protocol, and also listen here already for the drag result.
 
 public extension CGSize {
     /// Calculates the absolute volume
