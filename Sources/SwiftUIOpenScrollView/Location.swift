@@ -30,11 +30,17 @@ public class Location: ObservableObject, Equatable {
     @Published public var anchorPoint: CGPoint
 }
 
-public class IDLocation: Location {
+public class LocationWithID: Location {
+    public static func == (lhs: LocationWithID, rhs: LocationWithID) -> Bool {
+        return lhs.frame == rhs.frame &&
+        lhs.anchor == rhs.anchor &&
+        lhs.id == rhs.id
+    }
 
     public init(id: AnyHashable = Double.infinity, frame: CGRect = .zero, anchor: UnitPoint = .zero) {
         self.id = id
         super.init(frame: frame, anchor: anchor)
     }
+
     @Published public var id: AnyHashable
 }
