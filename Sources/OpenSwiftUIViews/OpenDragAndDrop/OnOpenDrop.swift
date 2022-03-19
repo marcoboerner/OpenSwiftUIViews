@@ -9,8 +9,8 @@ import SwiftUI
 
 // MARK: - Gesture as ViewModifier with Bindings
 
-extension View {
-    public func onOpenDrop<T: Hashable>(of supportedTypes: [T.Type], isTargeted: Binding<Bool>?, perform action: @escaping (_ draggedItems: [AnyHashable]) -> Void) -> some View {
+public extension View {
+    func onOpenDrop<T: Hashable>(of supportedTypes: [T.Type], isTargeted: Binding<Bool>?, perform action: @escaping (_ draggedItems: [AnyHashable]) -> Void) -> some View {
         modifier(OnOpenDrop(isTargeted: isTargeted, didDropCompletion: action))
     }
 }

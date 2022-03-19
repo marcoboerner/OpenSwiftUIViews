@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+public extension View {
     func onOpenDrag<T: Hashable>(_ didStartDragging: @escaping () -> T) -> some View {
         modifier(OnOpenDrag(didStartDragging: didStartDragging))
     }

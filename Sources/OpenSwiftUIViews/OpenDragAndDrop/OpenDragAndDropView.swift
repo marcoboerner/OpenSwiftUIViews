@@ -10,6 +10,10 @@ import SwiftUI
 // MARK: - Drag and Drop Reading
 
 public struct OpenDragAndDropView<Content>: View where Content: View {
+    public init(openDragItems: OpenDragItems = OpenDragItems(), content: @escaping () -> Content) {
+        self.openDragItems = openDragItems
+        self.content = content
+    }
 
     @State var draggedItem: IdentifiableLocation = IdentifiableLocation()
     var openDragItems: OpenDragItems = OpenDragItems()
