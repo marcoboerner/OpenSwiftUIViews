@@ -10,19 +10,22 @@ import SwiftUI
 // MARK: - Gesture as ViewModifier with Bindings
 
 public extension View {
-    func onOpenDrop<T: Hashable>(of supportedTypes: [T.Type], isTargeted: Binding<Bool>?, perform action: @escaping (_ draggedItems: [AnyHashable]) -> Void) -> some View {
-        modifier(OnOpenDrop(isTargeted: isTargeted, didDropCompletion: action))
+    func onOpenDrop<T: Hashable>(of supportedType: T.Type, isTargeted: Binding<Bool>?, perform action: @escaping (_ draggedItems: [AnyHashable]) -> Void) -> some View {
+        modifier(OnOpenDrop(of: supportedType, isTargeted: isTargeted, didDropCompletion: action))
     }
 }
 
-struct OnOpenDrop: ViewModifier {
-    internal init(isTargeted: Binding<Bool>?, didDropCompletion: @escaping ([AnyHashable]) -> Void) {
+struct OnOpenDrop<T: Hashable>: ViewModifier {
+
+    internal init(of supportedType: T.Type, isTargeted: Binding<Bool>?, didDropCompletion: @escaping ([AnyHashable]) -> Void) {
         _isTargeted = isTargeted ?? .constant(false)
+        self.supportedType = supportedType
         self.didDropCompletion = didDropCompletion
     }
 
     @EnvironmentObject var openDragItems: OpenDragItems
-    @EnvironmentObject var draggedItem: IdentifiableLocation
+    @EnvironmentObject var dragLocation: IdentifiableLocation
+    var supportedType: T.Type
     @Binding var isTargeted: Bool
     var didDropCompletion: ([AnyHashable]) -> Void
 
@@ -32,14 +35,24 @@ struct OnOpenDrop: ViewModifier {
             .background(
                 GeometryReader { geometry in
                     Color.clear
-                        .onChange(of: draggedItem) { [draggedItem] newDraggedItem in
+                        .onChange(of: dragLocation) { [dragLocation] newDragLocation in
 
-                            if draggedItem.id != newDraggedItem.id, isTargeted {
+                            guard openDragItems.items.contains(where: { item in
+
+                                print(type(of: item as? T))
+
+                                //here
+
+                                    return type(of: item) == supportedType.self
+                            })
+                            else { return }
+
+                            if dragLocation.id != newDragLocation.id, isTargeted {
                                 didDropCompletion(openDragItems.items)
                             }
 
                             withAnimation {
-                                isTargeted = newDraggedItem.frame.intersecting(geometry.frame(in: .global), by: 0.6)
+                                isTargeted = newDragLocation.frame.intersecting(geometry.frame(in: .global), by: 0.6)
                             }
                         }
                 }

@@ -79,7 +79,7 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
                     let draggedValue = didStartDragging()
                     openDragItems.items.append(draggedValue)
                 } else {
-
+                    openDragItems.items.removeAll()
                 }
             }
 

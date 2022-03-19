@@ -15,6 +15,7 @@ public struct OpenDragAndDropView<Content>: View where Content: View {
         self.content = content
     }
 
+
     @State var draggedItem: IdentifiableLocation = IdentifiableLocation()
     var openDragItems: OpenDragItems = OpenDragItems()
 
