@@ -8,7 +8,7 @@
 import SwiftUI
 
 public extension View {
-    func onOpenDrag<T: Hashable>(_ didStartDragging: @escaping () -> T) -> some View {
+    func onOpenDrag<T: Hashable>(_ didStartDragging: @escaping () -> [T]) -> some View {
         modifier(OnOpenDrag(didStartDragging: didStartDragging))
     }
 }
@@ -18,11 +18,9 @@ public extension View {
 struct OnOpenDrag<T: Hashable>: ViewModifier {
 
     let internalID: UUID = UUID()
-
     @State var gestureValue: GestureValue = GestureValue()
     @EnvironmentObject var openDragItems: OpenDragItems
-
-    var didStartDragging: () -> T
+    var didStartDragging: () -> [T]
 
     func body(content: Content) -> some View {
 
@@ -76,13 +74,10 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
             .gesture(tapPressDragGesture)
             .onChange(of: gestureValue.isDragging) { isDragging in
                 if isDragging {
-                    let draggedValue = didStartDragging()
-                    openDragItems.items.append(draggedValue)
-                } else {
-                    openDragItems.items.removeAll()
+                    let draggedValues = didStartDragging()
+                    openDragItems.items = draggedValues
                 }
             }
-
     }
 }
 
