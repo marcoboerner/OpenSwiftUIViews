@@ -1,4 +1,4 @@
-# SwiftUI OpenScrollView
+# OpenSwiftUIViews
 
 ### A _non gesture blocking_, _non clipping by default_ custom scroll view implementation with example code.
 
