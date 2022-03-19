@@ -30,8 +30,8 @@ public class Location: ObservableObject, Equatable {
     @Published public var anchorPoint: CGPoint
 }
 
-public class LocationWithID: Location {
-    public static func == (lhs: LocationWithID, rhs: LocationWithID) -> Bool {
+public class IdentifiableLocation: Location {
+    public static func == (lhs: IdentifiableLocation, rhs: IdentifiableLocation) -> Bool {
         return lhs.frame == rhs.frame &&
         lhs.anchor == rhs.anchor &&
         lhs.id == rhs.id
