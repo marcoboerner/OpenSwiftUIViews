@@ -37,15 +37,7 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
                     Color.clear
                         .onChange(of: dragLocation) { [dragLocation] newDragLocation in
 
-                            guard openDragItems.items.contains(where: { item in
-
-                                print(type(of: item as? T))
-
-                                //here
-
-                                    return type(of: item) == supportedType.self
-                            })
-                            else { return }
+                            guard openDragItems.items.contains(where: { $0 as? T != nil }) else { return }
 
                             if dragLocation.id != newDragLocation.id, isTargeted {
                                 didDropCompletion(openDragItems.items)
