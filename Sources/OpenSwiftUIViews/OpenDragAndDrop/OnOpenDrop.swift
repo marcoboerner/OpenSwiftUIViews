@@ -23,8 +23,8 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
         self.didDropCompletion = didDropCompletion
     }
 
-    @EnvironmentObject var openDragItems: OpenDragItems
-    @EnvironmentObject var dragLocation: IdentifiableLocation
+    @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
+
     var supportedType: T.Type
     @Binding var isTargeted: Bool
     var didDropCompletion: ([T]) -> Void
@@ -35,15 +35,19 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
             .background(
                 GeometryReader { geometry in
                     Color.clear
-                        .onChange(of: dragLocation) { [dragLocation] newDragLocation in
+                        .onReceive(openDragAndDropState.$dragLocation) { [dragLocation = openDragAndDropState.dragLocation] newDragLocation in
+
+                            print(dragLocation.id, newDragLocation.id)
 
                             // Checking if the currently dragged items match the expected type
-                            guard openDragItems.items.contains(where: { $0 as? T != nil }) else { return }
+                            guard openDragAndDropState.items.contains(where: { $0 as? T != nil }) else { return }
 
                             // If the dragged item changes, which could also due to a drop, potentially dropping the item
                             if dragLocation.id != newDragLocation.id, isTargeted {
                                 // returning the dropped items
-                                didDropCompletion(openDragItems.items.compactMap({ $0 as? T }))
+                                openDragAndDropState.success = true
+                                didDropCompletion(openDragAndDropState.items.compactMap({ $0 as? T }))
+                                openDragAndDropState.items.removeAll()
                             }
 
                             // Activating the binding if a dragged item is over the drop area.

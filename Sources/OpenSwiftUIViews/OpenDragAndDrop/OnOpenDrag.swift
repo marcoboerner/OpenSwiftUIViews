@@ -19,7 +19,8 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
 
     let internalID: UUID = UUID()
     @State var gestureValue: GestureValue = GestureValue()
-    @EnvironmentObject var openDragItems: OpenDragItems
+    @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
+
     var didStartDragging: () -> [T]
 
     func body(content: Content) -> some View {
@@ -75,7 +76,7 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
             .onChange(of: gestureValue.isDragging) { isDragging in
                 if isDragging {
                     let draggedValues = didStartDragging()
-                    openDragItems.items = draggedValues
+                    openDragAndDropState.items = draggedValues
                 }
             }
     }

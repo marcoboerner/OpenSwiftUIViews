@@ -7,38 +7,35 @@
 
 import SwiftUI
 
+class OpenDragAndDropState: ObservableObject, Equatable {
+    static func == (lhs: OpenDragAndDropState, rhs: OpenDragAndDropState) -> Bool {
+        lhs.dragLocation == rhs.dragLocation &&
+        lhs.items == rhs.items &&
+        lhs.success == rhs.success
+    }
+
+    @Published var dragLocation: IdentifiableLocation = IdentifiableLocation()
+    @Published var items: [AnyHashable] = []
+    @Published var success: Bool = false
+}
+
+
 // MARK: - Drag and Drop Reading
 
 public struct OpenDragAndDropView<Content>: View where Content: View {
-    public init(openDragItems: OpenDragItems = OpenDragItems(), content: @escaping () -> Content) {
-        self.openDragItems = openDragItems
+    public init(content: @escaping () -> Content) {
         self.content = content
     }
 
-
-    @State var draggedItem: IdentifiableLocation = IdentifiableLocation()
-    var openDragItems: OpenDragItems = OpenDragItems()
+    @State var openDragAndDropState: OpenDragAndDropState = OpenDragAndDropState()
 
     var content: () -> Content
 
     public var body: some View {
         return self.content()
-            .onPreferenceChange(OpenDragPreferenceKey.self) { draggedItem in
-                self.draggedItem = draggedItem
+            .onPreferenceChange(OpenDragPreferenceKey.self) { dragLocation in
+                self.openDragAndDropState.dragLocation = dragLocation
             }
-            .environmentObject(draggedItem)
-            .environmentObject(openDragItems)
+            .environmentObject(openDragAndDropState)
     }
-}
-
-public class OpenDragItems: ObservableObject, Equatable {
-    public static func == (lhs: OpenDragItems, rhs: OpenDragItems) -> Bool {
-        lhs.items == rhs.items
-    }
-
-    public init(items: [AnyHashable] = []) {
-        self.items = items
-    }
-
-    @Published public var items: [AnyHashable]
 }
