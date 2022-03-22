@@ -23,6 +23,8 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
         self.didDropCompletion = didDropCompletion
     }
 
+    @State var internalChildID: UUID = UUID()
+
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
 
     var supportedType: T.Type
@@ -32,15 +34,17 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
     func body(content: Content) -> some View {
 
         content
+            .onPreferenceChange(OpenDragPreferenceKey.self) {
+                // If a child of the drop location is also the dragged item, choosing to ignore that item.
+                guard let internalChildID = $0.id as? UUID else { return }
+                self.internalChildID = internalChildID
+            }
             .background(
                 GeometryReader { geometry in
                     Color.clear
                         .onReceive(openDragAndDropState.$dragLocation) { [dragLocation = openDragAndDropState.dragLocation] newDragLocation in
-
-                            print(dragLocation.id, newDragLocation.id)
-
-                            // Checking if the currently dragged items match the expected type
-                            guard openDragAndDropState.items.contains(where: { $0 as? T != nil }) else { return }
+                            // Checking if the currently dragged items match the expected type and is not itself as being dragged through a drag modifier
+                            guard openDragAndDropState.items.contains(where: { $0 as? T != nil }), internalChildID != newDragLocation.id as? UUID else { return }
 
                             // If the dragged item changes, which could also due to a drop, potentially dropping the item
                             if dragLocation.id != newDragLocation.id, isTargeted {

@@ -22,6 +22,7 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
 
     var didStartDragging: () -> [T]
+    @State var scale: CGFloat = 1.0
 
     func body(content: Content) -> some View {
 
@@ -34,10 +35,10 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
                 gestureValue.isTapping = false
             }
 
-        let pressGesture = LongPressGesture(minimumDuration: 0.2)
+        let pressGesture = LongPressGesture(minimumDuration: 0.3)
             .onEnded { _ in
+                gestureValue.zIndex += 100
                 withAnimation {
-                    gestureValue.zIndex += 100
                     gestureValue.isDragging = true
                 }
             }
@@ -46,11 +47,21 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
         let dragGesture = DragGesture(minimumDistance: 0)
             .onChanged { gestureValue.offset = $0.translation }
             .onEnded { _ in
-                withAnimation {
+                if openDragAndDropState.success { // this animation doesn't work yet as planned
+                    scale = 0.0
                     gestureValue.offset = .zero
-                    gestureValue.isDragging = false
-                    gestureValue.zIndex -= 100
+                    withAnimation {
+                        scale = 1.0
+                    }
+                } else {
+                    withAnimation {
+                        scale = 1.0
+                        gestureValue.offset = .zero
+                        gestureValue.isDragging = false
+                    }
                 }
+
+                gestureValue.zIndex -= 100
             }
 
         // The dragGesture will wait until the pressGesture has triggered after minimumDuration 1.0 seconds.
@@ -70,6 +81,8 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
                     }
                 }
             )
+            .scaleEffect(scale)
+            .zIndex(gestureValue.zIndex)
             .offset(gestureValue.offset)
             .blockScrolling(gestureValue.isDragging)
             .gesture(tapPressDragGesture)
