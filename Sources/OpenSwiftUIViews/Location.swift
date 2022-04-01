@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Observable Object
+// MARK: - Observable Location Objects
 
 public class Location: ObservableObject, Equatable {
 
@@ -43,4 +43,22 @@ public class IdentifiableLocation: Location {
     }
 
     @Published public var id: AnyHashable
+}
+
+public class DoubleIdentifiableLocation: Location {
+    public static func == (lhs: DoubleIdentifiableLocation, rhs: DoubleIdentifiableLocation) -> Bool {
+        return lhs.frame == rhs.frame &&
+        lhs.anchor == rhs.anchor &&
+        lhs.id1 == rhs.id1 &&
+        lhs.id2 == rhs.id2
+    }
+
+    public init(id1: AnyHashable = Double.infinity, id2: AnyHashable = Double.infinity, frame: CGRect = .zero, anchor: UnitPoint = .zero) {
+        self.id1 = id1
+        self.id2 = id2
+        super.init(frame: frame, anchor: anchor)
+    }
+
+    @Published public var id1: AnyHashable
+    @Published public var id2: AnyHashable
 }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension View {
+public extension View {
     /// Positions the center of this view at the specified point in the specified
     /// coordinate space.
     ///
@@ -30,7 +30,7 @@ extension View {
     ///   - in coordinateSpace: The target CoordinateSpace at which to place the center of this view.
     ///
     /// - Returns: A view that fixes the center of this view at `position` in `coordinateSpace` .
-    public func openRelativePosition(_ position: CGPoint?, in coordinateSpace: CoordinateSpace) -> some View {
+    func openRelativePosition(_ position: CGPoint?, in coordinateSpace: CoordinateSpace) -> some View {
         modifier(OpenRelativePosition(position: position, coordinateSpace: coordinateSpace))
     }
 }
