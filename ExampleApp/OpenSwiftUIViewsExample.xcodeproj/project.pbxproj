@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		201ADE6527CFFA5800B15902 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADE6427CFFA5800B15902 /* ContentView.swift */; };
+		201ADE6527CFFA5800B15902 /* OpenScrollViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */; };
 		208CDB7727F7550B0025CD94 /* OpenSwiftUIViews in Frameworks */ = {isa = PBXBuildFile; productRef = 208CDB7627F7550B0025CD94 /* OpenSwiftUIViews */; };
-		20F9E91125489BC200DF13DA /* SwiftUI_AnimationTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */; };
+		208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */; };
+		208CDB7B27F7563B0025CD94 /* OpenRelativeOffsetExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */; };
+		208CDB7F27F770B80025CD94 /* OpenAlignViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */; };
+		20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91025489BC200DF13DA /* OpenSwiftUIViewsExample.swift */; };
 		20F9E91525489BC400DF13DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91425489BC400DF13DA /* Assets.xcassets */; };
 		20F9E91825489BC400DF13DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91725489BC400DF13DA /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		201ADE6427CFFA5800B15902 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenScrollViewExample.swift; sourceTree = "<group>"; };
 		208CDB7527F754FA0025CD94 /* OpenSwiftUIViews */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenSwiftUIViews; path = ..; sourceTree = "<group>"; };
-		20F9E90D25489BC200DF13DA /* SwiftUI_AnimationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_AnimationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_AnimationTestApp.swift; sourceTree = "<group>"; };
+		208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenRelativePositionExample.swift; sourceTree = "<group>"; };
+		208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenRelativeOffsetExample.swift; sourceTree = "<group>"; };
+		208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAlignViewExample.swift; sourceTree = "<group>"; };
+		20F9E90D25489BC200DF13DA /* OpenSwiftUIViewsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSwiftUIViewsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F9E91025489BC200DF13DA /* OpenSwiftUIViewsExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSwiftUIViewsExample.swift; sourceTree = "<group>"; };
 		20F9E91425489BC400DF13DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20F9E91725489BC400DF13DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20F9E91925489BC400DF13DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,11 +57,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		208CDB7C27F757580025CD94 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				20F9E91025489BC200DF13DA /* OpenSwiftUIViewsExample.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		208CDB7D27F757720025CD94 /* Example Views */ = {
+			isa = PBXGroup;
+			children = (
+				208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */,
+				208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */,
+				201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */,
+				208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */,
+			);
+			path = "Example Views";
+			sourceTree = "<group>";
+		};
 		20F9E90425489BC200DF13DA = {
 			isa = PBXGroup;
 			children = (
 				2085CB0427D38B3C0090ED19 /* Packages */,
-				20F9E90F25489BC200DF13DA /* SwiftUI_AnimationTest */,
+				20F9E90F25489BC200DF13DA /* OpenSwiftUIViewsExample */,
 				20F9E90E25489BC200DF13DA /* Products */,
 				2085CB0627D38B690090ED19 /* Frameworks */,
 			);
@@ -64,21 +89,21 @@
 		20F9E90E25489BC200DF13DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				20F9E90D25489BC200DF13DA /* SwiftUI_AnimationTest.app */,
+				20F9E90D25489BC200DF13DA /* OpenSwiftUIViewsExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		20F9E90F25489BC200DF13DA /* SwiftUI_AnimationTest */ = {
+		20F9E90F25489BC200DF13DA /* OpenSwiftUIViewsExample */ = {
 			isa = PBXGroup;
 			children = (
-				20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */,
-				201ADE6427CFFA5800B15902 /* ContentView.swift */,
+				208CDB7D27F757720025CD94 /* Example Views */,
+				208CDB7C27F757580025CD94 /* Main */,
 				20F9E91425489BC400DF13DA /* Assets.xcassets */,
 				20F9E91925489BC400DF13DA /* Info.plist */,
 				20F9E91625489BC400DF13DA /* Preview Content */,
 			);
-			path = SwiftUI_AnimationTest;
+			path = OpenSwiftUIViewsExample;
 			sourceTree = "<group>";
 		};
 		20F9E91625489BC400DF13DA /* Preview Content */ = {
@@ -92,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		20F9E90C25489BC200DF13DA /* SwiftUI_AnimationTest */ = {
+		20F9E90C25489BC200DF13DA /* OpenSwiftUIViewsExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 20F9E91C25489BC400DF13DA /* Build configuration list for PBXNativeTarget "SwiftUI_AnimationTest" */;
+			buildConfigurationList = 20F9E91C25489BC400DF13DA /* Build configuration list for PBXNativeTarget "OpenSwiftUIViewsExample" */;
 			buildPhases = (
 				20F9E90925489BC200DF13DA /* Sources */,
 				20F9E90A25489BC200DF13DA /* Frameworks */,
@@ -104,12 +129,12 @@
 			);
 			dependencies = (
 			);
-			name = SwiftUI_AnimationTest;
+			name = OpenSwiftUIViewsExample;
 			packageProductDependencies = (
 				208CDB7627F7550B0025CD94 /* OpenSwiftUIViews */,
 			);
 			productName = SwiftUI_AnimationTest;
-			productReference = 20F9E90D25489BC200DF13DA /* SwiftUI_AnimationTest.app */;
+			productReference = 20F9E90D25489BC200DF13DA /* OpenSwiftUIViewsExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -126,7 +151,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 20F9E90825489BC200DF13DA /* Build configuration list for PBXProject "SwiftUI_AnimationTest" */;
+			buildConfigurationList = 20F9E90825489BC200DF13DA /* Build configuration list for PBXProject "OpenSwiftUIViewsExample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -139,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				20F9E90C25489BC200DF13DA /* SwiftUI_AnimationTest */,
+				20F9E90C25489BC200DF13DA /* OpenSwiftUIViewsExample */,
 			);
 		};
 /* End PBXProject section */
@@ -161,8 +186,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				201ADE6527CFFA5800B15902 /* ContentView.swift in Sources */,
-				20F9E91125489BC200DF13DA /* SwiftUI_AnimationTestApp.swift in Sources */,
+				208CDB7F27F770B80025CD94 /* OpenAlignViewExample.swift in Sources */,
+				201ADE6527CFFA5800B15902 /* OpenScrollViewExample.swift in Sources */,
+				208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */,
+				20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */,
+				208CDB7B27F7563B0025CD94 /* OpenRelativeOffsetExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -275,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,11 +319,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI_AnimationTest/Preview Content\"";
 				DEVELOPMENT_TEAM = MZYRW3QS38;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = SwiftUI_AnimationTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				INFOPLIST_FILE = OpenSwiftUIViewsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,11 +339,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI_AnimationTest/Preview Content\"";
 				DEVELOPMENT_TEAM = MZYRW3QS38;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = SwiftUI_AnimationTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				INFOPLIST_FILE = OpenSwiftUIViewsExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +356,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		20F9E90825489BC200DF13DA /* Build configuration list for PBXProject "SwiftUI_AnimationTest" */ = {
+		20F9E90825489BC200DF13DA /* Build configuration list for PBXProject "OpenSwiftUIViewsExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20F9E91A25489BC400DF13DA /* Debug */,
@@ -341,7 +365,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		20F9E91C25489BC400DF13DA /* Build configuration list for PBXNativeTarget "SwiftUI_AnimationTest" */ = {
+		20F9E91C25489BC400DF13DA /* Build configuration list for PBXNativeTarget "OpenSwiftUIViewsExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				20F9E91D25489BC400DF13DA /* Debug */,

@@ -1,14 +1,13 @@
 //
-//  ContentView8.swift
-//  SwiftUI_AnimationTest
+//  OpenScrollViewExample.swift
 //
 //  Created by Marco Boerner on 27.02.22.
 //
 
 import SwiftUI
-import SwiftUIOpenScrollView
+import OpenSwiftUIViews
 
-struct ContentView: View {
+struct OpenScrollViewExample: View {
 
     @State var goTo: Int = 50
 
@@ -21,7 +20,7 @@ struct ContentView: View {
                     LazyVStack(spacing: 10) {
                         ForEach(0..<99, id: \.self) { id in
                             JustSomeElement(stringNumber: "\(id)")
-                                .customID(id)
+                                .openScrollID(id)
                                 .frame(maxWidth: .infinity)
                         }
                     }
@@ -99,8 +98,8 @@ struct JustSomeElement: View {
 
 // MARK: - Preview
 
-struct ContentView10_Previews: PreviewProvider {
+struct OpenScrollViewExample_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        OpenScrollViewExample()
     }
 }

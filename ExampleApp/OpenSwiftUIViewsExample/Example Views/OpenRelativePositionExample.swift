@@ -4,8 +4,9 @@
 //  Created by Marco Boerner on 10.11.20.
 
 import SwiftUI
+import OpenSwiftUIViews
 
-struct ContentView2: View {
+struct OpenRelativePositionExample: View {
 
     @State var targetFrame: CGRect = .zero
     @State var tapped: Bool = false
@@ -23,7 +24,8 @@ struct ContentView2: View {
                                 Color.clear
                                     .onAppear {
                                         targetFrame = geometry.frame(in: .named("TARGET"))
-                                        print(targetFrame)
+                                    }.onChange(of: geometry.frame(in: .named("TARGET"))) { newValue in
+                                        targetFrame = newValue
                                     }
                             }
                         )
@@ -46,8 +48,8 @@ struct ContentView2: View {
     }
 }
 
-struct ContentView2_Previews: PreviewProvider {
+struct OpenRelativePositionExample_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView2()
+        OpenRelativePositionExample()
     }
 }
