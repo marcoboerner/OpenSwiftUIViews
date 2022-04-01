@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		201ADE6527CFFA5800B15902 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADE6427CFFA5800B15902 /* ContentView.swift */; };
-		2085CB0B27D38DC30090ED19 /* SwiftUIOpenScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 2085CB0A27D38DC30090ED19 /* SwiftUIOpenScrollView */; };
+		208CDB7727F7550B0025CD94 /* OpenSwiftUIViews in Frameworks */ = {isa = PBXBuildFile; productRef = 208CDB7627F7550B0025CD94 /* OpenSwiftUIViews */; };
 		20F9E91125489BC200DF13DA /* SwiftUI_AnimationTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */; };
 		20F9E91525489BC400DF13DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91425489BC400DF13DA /* Assets.xcassets */; };
 		20F9E91825489BC400DF13DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91725489BC400DF13DA /* Preview Assets.xcassets */; };
@@ -16,7 +16,7 @@
 
 /* Begin PBXFileReference section */
 		201ADE6427CFFA5800B15902 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2085CB0927D38DB90090ED19 /* SwiftUIOpenScrollView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftUIOpenScrollView; path = ..; sourceTree = "<group>"; };
+		208CDB7527F754FA0025CD94 /* OpenSwiftUIViews */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenSwiftUIViews; path = ..; sourceTree = "<group>"; };
 		20F9E90D25489BC200DF13DA /* SwiftUI_AnimationTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_AnimationTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F9E91025489BC200DF13DA /* SwiftUI_AnimationTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_AnimationTestApp.swift; sourceTree = "<group>"; };
 		20F9E91425489BC400DF13DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -29,7 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2085CB0B27D38DC30090ED19 /* SwiftUIOpenScrollView in Frameworks */,
+				208CDB7727F7550B0025CD94 /* OpenSwiftUIViews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,7 +39,7 @@
 		2085CB0427D38B3C0090ED19 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				2085CB0927D38DB90090ED19 /* SwiftUIOpenScrollView */,
+				208CDB7527F754FA0025CD94 /* OpenSwiftUIViews */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -106,7 +106,7 @@
 			);
 			name = SwiftUI_AnimationTest;
 			packageProductDependencies = (
-				2085CB0A27D38DC30090ED19 /* SwiftUIOpenScrollView */,
+				208CDB7627F7550B0025CD94 /* OpenSwiftUIViews */,
 			);
 			productName = SwiftUI_AnimationTest;
 			productReference = 20F9E90D25489BC200DF13DA /* SwiftUI_AnimationTest.app */;
@@ -300,7 +300,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "blue.same.SwiftUI-AnimationTest";
+				PRODUCT_BUNDLE_IDENTIFIER = blue.same.Swi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -322,7 +322,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "blue.same.SwiftUI-AnimationTest";
+				PRODUCT_BUNDLE_IDENTIFIER = blue.same.Swi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,9 +353,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2085CB0A27D38DC30090ED19 /* SwiftUIOpenScrollView */ = {
+		208CDB7627F7550B0025CD94 /* OpenSwiftUIViews */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = SwiftUIOpenScrollView;
+			productName = OpenSwiftUIViews;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
