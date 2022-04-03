@@ -18,19 +18,20 @@ struct OpenAlignViewExample: View {
                 HStack(alignment: .top) {
                     Text("Laboris nisi aute\nenim sunt qui aute ut lorem")
                         .lineLimit(3)
-                        .openAlign(column: 1, row: 1, .topLeading)
+                        .openAlignSize(column: 1, row: 1, .topLeading)
+                    Text("XXX")
                     Text("sit occaecat")
-                        .openAlign(column: 2, row: 1, .topLeading)
+                        .openAlignSize(column: 2, row: 1, .topLeading)
                     Text("laborum amet elit")
-                        .openAlign(column: 3, row: 1, .topLeading)
+                        .openAlignSize(column: 3, row: 1, .topLeading)
                 }
                 HStack(alignment: .top) {
                     Text("lorem aliqua pariatur\nexcepteur aliquip labore\ndo eiusmod ipsum qui non\nfugiat fugiat")
-                        .openAlign(column: 1, row: 1, .topLeading)
+                        .openAlignSize(column: 1, row: 1, .topLeading)
                     Text("sed dolor qui sint consectetur")
-                        .openAlign(column: 2, row: 1, .topLeading)
+                        .openAlignSize(column: 2, row: 1, .topLeading)
                     Text("consectetur sit excepteur quis lorem")
-                        .openAlign(column: 3, row: 1, .topLeading)
+                        .openAlignSize(column: 3, row: 1, .topLeading)
                 }
                 Spacer()
             }

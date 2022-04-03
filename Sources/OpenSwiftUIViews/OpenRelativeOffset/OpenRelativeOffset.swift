@@ -37,13 +37,9 @@ public extension View {
 private struct OpenRelativeOffset: ViewModifier {
 
     var position: CGPoint?
-    @State private var newPosition: CGPoint = .zero
     @State private var newOffset: CGSize = .zero
 
     let coordinateSpace: CoordinateSpace
-
-    @State var localPosition: CGPoint = .zero
-    @State var targetPosition: CGPoint = .zero
 
     func body(content: Content) -> some View {
 
@@ -58,11 +54,13 @@ private struct OpenRelativeOffset: ViewModifier {
                                     let localFrame = geometry.frame(in: .local)
                                     let otherFrame = geometry.frame(in: coordinateSpace)
 
-                                    localPosition = CGPoint(x: localFrame.midX, y: localFrame.midY)
+                                    let localPosition = CGPoint(x: localFrame.midX, y: localFrame.midY)
+                                    let targetPosition = CGPoint(x: otherFrame.midX, y: otherFrame.midY)
 
-                                    targetPosition = CGPoint(x: otherFrame.midX, y: otherFrame.midY)
-                                    newPosition.x = localPosition.x - targetPosition.x + position.x
-                                    newPosition.y = localPosition.y - targetPosition.y + position.y
+                                    let newPosition = CGPoint(
+                                        x: localPosition.x - targetPosition.x + position.x,
+                                        y: localPosition.y - targetPosition.y + position.y
+                                    )
 
                                     newOffset = CGSize(width: newPosition.x - abs(localPosition.x), height: newPosition.y - abs(localPosition.y))
                                 }

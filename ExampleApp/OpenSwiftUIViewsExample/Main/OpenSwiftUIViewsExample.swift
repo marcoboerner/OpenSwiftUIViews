@@ -33,6 +33,11 @@ struct OpenSwiftUIViewsExample: App {
                     }
                     Spacer()
                     NavigationLink {
+                        OpenAlignOffsetExample()
+                    } label: {
+                        Text("OpenAlignOffset Example")
+                    }
+                    NavigationLink {
                         OpenAlignViewExample()
                     } label: {
                         VStack {

@@ -12,6 +12,7 @@
 		208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */; };
 		208CDB7B27F7563B0025CD94 /* OpenRelativeOffsetExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */; };
 		208CDB7F27F770B80025CD94 /* OpenAlignViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */; };
+		208CDB8127F789EC0025CD94 /* OpenAlignOffsetExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB8027F789EC0025CD94 /* OpenAlignOffsetExample.swift */; };
 		20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91025489BC200DF13DA /* OpenSwiftUIViewsExample.swift */; };
 		20F9E91525489BC400DF13DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91425489BC400DF13DA /* Assets.xcassets */; };
 		20F9E91825489BC400DF13DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91725489BC400DF13DA /* Preview Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenRelativePositionExample.swift; sourceTree = "<group>"; };
 		208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenRelativeOffsetExample.swift; sourceTree = "<group>"; };
 		208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAlignViewExample.swift; sourceTree = "<group>"; };
+		208CDB8027F789EC0025CD94 /* OpenAlignOffsetExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenAlignOffsetExample.swift; sourceTree = "<group>"; };
 		20F9E90D25489BC200DF13DA /* OpenSwiftUIViewsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSwiftUIViewsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F9E91025489BC200DF13DA /* OpenSwiftUIViewsExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSwiftUIViewsExample.swift; sourceTree = "<group>"; };
 		20F9E91425489BC400DF13DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */,
 				201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */,
 				208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */,
+				208CDB8027F789EC0025CD94 /* OpenAlignOffsetExample.swift */,
 			);
 			path = "Example Views";
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				208CDB7F27F770B80025CD94 /* OpenAlignViewExample.swift in Sources */,
+				208CDB8127F789EC0025CD94 /* OpenAlignOffsetExample.swift in Sources */,
 				201ADE6527CFFA5800B15902 /* OpenScrollViewExample.swift in Sources */,
 				208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */,
 				20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */,
