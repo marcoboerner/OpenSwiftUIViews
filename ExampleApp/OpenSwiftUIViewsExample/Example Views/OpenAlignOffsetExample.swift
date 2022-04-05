@@ -48,3 +48,6 @@ struct OpenAlignOffsetExample: View {
         }
     }
 }
+
+// FIXME: - I think right now it's possible by using offset that column 2 won't always be column two, it could even be after three of one is using trailing and the other leading. hmm
+// FIXME: - Currently when I add also the align view, it gets pretty big and over the edge of the screen. Maybe there is a way of clipping it or keeping the size contained. Try with custom coordinate space maybe

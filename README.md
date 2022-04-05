@@ -34,7 +34,11 @@ Similar to the drag and drop capabilities that SwiftUI provides but only meant f
 
 ### OpenAlignView
 
-Allows to align _multiple_ views from multiple stacks in rows and cols. Currently only adjusting the frame size and not yet position.
+Allows to align the size of the frames of _multiple_ views from multiple stacks in rows and cols.
+
+### OpenAlignOffset
+
+Aligns the offset of _multiple_ views organized in rows and cols, aligning both axes.
 
 ### OpenRelativePosition and OpenRelativeOffset
 

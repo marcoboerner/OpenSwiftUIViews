@@ -37,7 +37,7 @@ struct OpenAlignSize<T: Hashable>: ViewModifier {
             .frame(width: width, height: height, alignment: alignment)
             .background(
                 GeometryReader { geometry in
-                    Color.green.opacity(0.1)
+                    Color.clear
                         .preference(key: OpenAlignPreferenceKey.self, value: [DoubleIdentifiableLocation(id1: column, id2: row, frame: geometry.frame(in: .global))])
                         .onReceive(openAlignState.$alignLocations) { alignLocations in
 
@@ -82,7 +82,7 @@ struct OpenAlignOffset<T: Hashable>: ViewModifier {
             .offset(offset)
             .background(
                 GeometryReader { geometry in
-                    Color.black.opacity(0.1)
+                    Color.clear
                         .preference(key: OpenAlignPreferenceKey.self, value: [DoubleIdentifiableLocation(id1: column, id2: row, frame: geometry.frame(in: coordinateSpace))])
                         .onReceive(openAlignState.$alignLocations) { alignLocations in
                             offset = getOffset(for: alignLocations, with: geometry, and: alignment)
@@ -174,6 +174,8 @@ struct OpenAlignOffset<T: Hashable>: ViewModifier {
 
     }
 }
+
+// TODO: - Implement some warnings when the same modifier is implemented on the same view multiple times. Like on a custom view and also in the subview of the custom view.
 
 // TODO: - Allow the alignment to be set by the OpenAlignView and be inherited, but can be overwritten by the individual modifiers
 // TODO: - When having both open align offset and open align size, make it possible that only one of the two need to assign the id (when no id is given.

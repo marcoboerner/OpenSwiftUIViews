@@ -8,16 +8,17 @@
 import Foundation
 import SwiftUI
 
+
 // MARK: - Align View
 
 public struct OpenAlignView<Content>: View where Content: View {
-    public init(content: @escaping () -> Content) {
+    @inlinable public init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content
     }
 
     @State var openAlignState: OpenAlignState = OpenAlignState()
 
-    var content: () -> Content
+    public var content: () -> Content
 
     public var body: some View {
         self.content()
