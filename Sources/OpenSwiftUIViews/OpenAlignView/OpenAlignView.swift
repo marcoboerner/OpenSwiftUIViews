@@ -20,9 +20,9 @@ public struct OpenAlignView<Content>: View where Content: View {
     var content: () -> Content
 
     public var body: some View {
-        return self.content()
+        self.content()
             .onPreferenceChange(OpenAlignPreferenceKey.self) { alignLocations in
-                self.openAlignState.alignLocations = alignLocations // FIXME: - maybe something is not refreshed right and I need to find out what and where
+                self.openAlignState.alignLocations = alignLocations
             }
             .environmentObject(openAlignState)
     }
@@ -42,9 +42,6 @@ class OpenAlignState: ObservableObject, Equatable {
 
 struct OpenAlignPreferenceKey: PreferenceKey, Equatable {
     static func reduce(value: inout [DoubleIdentifiableLocation], nextValue: () -> [DoubleIdentifiableLocation]) {
-
-        print("||: pref change: \(nextValue().first?.frame.minY ?? .zero)")
-
         value.append(contentsOf: nextValue())
     }
     static var defaultValue: [DoubleIdentifiableLocation] = []
