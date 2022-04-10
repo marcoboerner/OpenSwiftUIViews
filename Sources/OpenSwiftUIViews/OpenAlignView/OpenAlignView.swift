@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import OrderedCollections
 
 
 // MARK: - Align View
@@ -25,6 +26,13 @@ public struct OpenAlignView<Content>: View where Content: View {
             .onPreferenceChange(OpenAlignPreferenceKey.self) { alignLocations in
                 self.openAlignState.alignLocations = alignLocations
             }
+            .onPreferenceChange(OpenAlignMaxXOffsetsPreferenceKeys.self) { identifiableMaxX in
+
+                print("received:", identifiableMaxX.maxX, "id: ", identifiableMaxX.id)
+
+                // => I might be able to use this here to make sure only the relevant values are published, somehow.
+                self.openAlignState.alignedXOffsets[identifiableMaxX.id] = identifiableMaxX.maxX
+            }
             .environmentObject(openAlignState)
     }
 }
@@ -33,10 +41,14 @@ public struct OpenAlignView<Content>: View where Content: View {
 
 class OpenAlignState: ObservableObject, Equatable {
     static func == (lhs: OpenAlignState, rhs: OpenAlignState) -> Bool {
-        lhs.alignLocations == rhs.alignLocations
+        lhs.alignLocations == rhs.alignLocations &&
+        lhs.alignedYOffsets == rhs.alignedYOffsets &&
+        lhs.alignedXOffsets == rhs.alignedXOffsets
     }
 
     @Published var alignLocations: [DoubleIdentifiableLocation] = []
+    @Published var alignedYOffsets: OrderedDictionary<AnyHashable, CGFloat> = [:]
+    @Published var alignedXOffsets: OrderedDictionary<AnyHashable, CGFloat> = [:]
 }
 
 // MARK: - Preference key
@@ -46,4 +58,21 @@ struct OpenAlignPreferenceKey: PreferenceKey, Equatable {
         value.append(contentsOf: nextValue())
     }
     static var defaultValue: [DoubleIdentifiableLocation] = []
+}
+
+
+struct OpenAlignMaxXOffsetsPreferenceKeys: PreferenceKey, Equatable {
+    static func reduce(value: inout IdentifiableMaxX, nextValue: () -> IdentifiableMaxX) {
+
+        guard nextValue().maxX > 0 else { return value = defaultValue }
+
+        guard nextValue().id == value.id else { return value = nextValue() }
+
+        value = value.maxX > nextValue().maxX ? value : nextValue()
+
+
+//        guard let nextValue = nextValue().first else { return }
+//        value[nextValue.key] = max(nextValue.value, value[nextValue.key] ?? 0)
+    }
+    static var defaultValue: IdentifiableMaxX = IdentifiableMaxX(id: 999, maxX: 0.0)
 }

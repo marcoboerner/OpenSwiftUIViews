@@ -18,7 +18,8 @@ struct DestinationPreferenceKey: PreferenceKey {
 /// Use this ScrolLView to prevent other gestures from blocking of being blocked by default.
 /// Clipping is deactivated by default and not all ScrollView features are implemented or will behave the same.
 public struct OpenScrollView<Content>: View where Content: View {
-    public init(content: @escaping () -> Content) {
+    public init(_ axes: Axis.Set = .vertical, content: @escaping () -> Content) {
+        self.axes = axes
         self.content = content
     }
 
@@ -30,7 +31,7 @@ public struct OpenScrollView<Content>: View where Content: View {
     @State private var scrollingIsBlocked = false
 
     /// The scroll direction, supported are vertical and horizontal or both.
-    @State var axis: Axis.Set = [.vertical]
+    private var axes: Axis.Set
 
     /// This parameter is changed through the proxy and the goTo method.
     @State private var scrollDestination = Location()
@@ -38,6 +39,8 @@ public struct OpenScrollView<Content>: View where Content: View {
     var content: () -> Content
 
     public var body: some View {
+
+// FIXME: - I need to find a way to not have the geometry reader change the view. Otherwise the outer reader is gonna make the view use all available space.
 
         // An outer geometry ...
         GeometryReader { outerGeometry in
@@ -67,7 +70,7 @@ public struct OpenScrollView<Content>: View where Content: View {
                         }
                 })
                 // The actual offset of the view is applied here, depending on the axis.
-                .offset(x: axis.contains(.horizontal) ? accumulatedOffset.width + offset.width : 0, y: axis.contains(.vertical) ? accumulatedOffset.height + offset.height : 0)
+                .offset(x: axes.contains(.horizontal) ? accumulatedOffset.width + offset.width : 0, y: axes.contains(.vertical) ? accumulatedOffset.height + offset.height : 0)
                 // Currently only offset and accumulated offset changes are animated
                 .animation(.spring(), value: offset)
                 .animation(.spring(), value: accumulatedOffset)

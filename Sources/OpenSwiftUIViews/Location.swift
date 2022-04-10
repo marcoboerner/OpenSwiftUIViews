@@ -62,3 +62,18 @@ public class DoubleIdentifiableLocation: Location {
     @Published public var id1: AnyHashable
     @Published public var id2: AnyHashable
 }
+
+public class IdentifiableMaxX: Equatable {
+    public static func == (lhs: IdentifiableMaxX, rhs: IdentifiableMaxX) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.maxX == rhs.maxX
+    }
+
+    public init(id: AnyHashable, maxX: CGFloat) {
+        self.id = id
+        self.maxX = maxX
+    }
+
+    public var id: AnyHashable
+    public var maxX: CGFloat
+}
