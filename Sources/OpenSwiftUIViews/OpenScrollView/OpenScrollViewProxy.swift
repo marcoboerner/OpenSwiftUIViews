@@ -7,12 +7,15 @@
 
 import SwiftUI
 
+// MARK: - Open Scroll View Proxy
+
 /// Use the proxy to scroll to a specific location.
 public struct OpenScrollViewProxy {
+
     static let openScrollViewCoordinateSpaceName = "OpenScrollView"
 
     @State var frames: [AnyHashable: CGRect]
-    @ObservedObject var scrollDestination: Location
+    @ObservedObject var scrollDestination: ScrollDestination
 
     /// Scrolls to the location of the ID
     /// Set the ID on the views inside the OpenScrollView with the customID modifier.
@@ -20,11 +23,13 @@ public struct OpenScrollViewProxy {
 
         guard let frame = frames[id] else { return }
 
-        scrollDestination.frame = frame
-        scrollDestination.anchor = anchor
+        scrollDestination.setAnchorPoint(frame: frame, anchor: anchor)
     }
 }
 
+// MARK: - Location Preference Key
+
+/// Collecting the current frames (locations) from every ID'ed scroll item. Updating while scrolling
 struct LocationPreferenceKey: PreferenceKey {
     static func reduce(value: inout [AnyHashable: CGRect], nextValue: () -> [AnyHashable: CGRect]) {
 
@@ -34,6 +39,8 @@ struct LocationPreferenceKey: PreferenceKey {
     }
     static var defaultValue: [AnyHashable: CGRect] = [:]
 }
+
+// MARK: - Open Scroll ID
 
 public extension View {
     /// Assign a custom ID to the elements to be used by the OpenScrollViewReader

@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct DestinationPreferenceKey: PreferenceKey {
-    static func reduce(value: inout Location, nextValue: () -> Location) {}
-    static var defaultValue: Location = Location()
+    static func reduce(value: inout ScrollDestination, nextValue: () -> ScrollDestination) {}
+    static var defaultValue: ScrollDestination = ScrollDestination()
 }
 
 // MARK: - OpenScrollView
@@ -34,7 +34,7 @@ public struct OpenScrollView<Content>: View where Content: View {
     private var axes: Axis.Set
 
     /// This parameter is changed through the proxy and the goTo method.
-    @State private var scrollDestination = Location()
+    @State private var scrollDestination = ScrollDestination()
 
     var content: () -> Content
 

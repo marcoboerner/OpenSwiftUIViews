@@ -18,7 +18,7 @@ public struct OpenScrollViewReader<Content>: View where Content: View {
     }
 
     @State var frames: [AnyHashable: CGRect] = [:]
-    @State var scrollDestination = Location()
+    @State var scrollDestination = ScrollDestination()
 
     var content: (OpenScrollViewProxy) -> Content
 
