@@ -7,28 +7,22 @@
 
 import SwiftUI
 
-public class ScrollDestination: ObservableObject, Equatable {
+// MARK: - Observable Location Objects
 
-    public init(frame: CGRect = .zero, anchor: UnitPoint = .zero) {
-        let x = frame.minX + (frame.maxX - frame.minX) * anchor.x
-        let y = frame.minY + (frame.maxY - frame.minY) * anchor.y
-        self.anchorPoint = CGPoint(x: x, y: y)
-    }
+public class ScrollDestination: ObservableObject, Equatable {
 
     public static func == (lhs: ScrollDestination, rhs: ScrollDestination) -> Bool {
         lhs.anchorPoint == rhs.anchorPoint
     }
 
-    public func setAnchorPoint(frame: CGRect = .zero, anchor: UnitPoint = .zero) {
+    public func setAnchorPoint(frame: CGRect, anchor: UnitPoint) {
         let x = frame.minX + (frame.maxX - frame.minX) * anchor.x
         let y = frame.minY + (frame.maxY - frame.minY) * anchor.y
         self.anchorPoint = CGPoint(x: x, y: y)
     }
 
-    @Published public var anchorPoint: CGPoint
+    @Published public private(set) var anchorPoint: CGPoint = .zero
 }
-
-// MARK: - Observable Location Objects
 
 public class Location: ObservableObject, Equatable {
 
