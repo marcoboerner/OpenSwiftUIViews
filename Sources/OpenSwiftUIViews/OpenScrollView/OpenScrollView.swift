@@ -30,6 +30,8 @@ public struct OpenScrollView<Content>: View where Content: View {
     /// Set to true when another gesture contained in the scroll view needs to block this views gestures.
     @State private var scrollingIsBlocked = false
 
+    @State private var innerGeometrySize: CGSize = .zero
+
     /// The scroll direction, supported are vertical and horizontal or both.
     private var axes: Axis.Set
 
@@ -40,62 +42,70 @@ public struct OpenScrollView<Content>: View where Content: View {
 
     public var body: some View {
 
-// FIXME: - I need to find a way to not have the geometry reader change the view. Otherwise the outer reader is gonna make the view use all available space.
+        // FIXME: - I need to find a way to not have the geometry reader change the view. Otherwise the outer reader is gonna make the view use all available space.
 
         // An outer geometry ...
         GeometryReader { outerGeometry in
             self.content()
                 .contentShape(Rectangle())
-                // ... and inner geometry is used to calculate the final extreme positions of the view ...
+            // ... and inner geometry is used to calculate the final extreme positions of the view ...
                 .background(GeometryReader { innerGeometry in
-                    EmptyView()
-
-                        // ... in order to bounce back to the most outside view here ...
-                        .onChange(of: accumulatedOffset.height) { _ in
-                            // bounce back to the top, also if the view does not have enough items to fill the scroll view.
-                            if accumulatedOffset.height > 0 || innerGeometry.size.height <= outerGeometry.size.height {
-                                accumulatedOffset.height = 0
-                            // bounce to the bottom
-                            } else if abs(accumulatedOffset.height) > innerGeometry.size.height - outerGeometry.size.height {
-                                accumulatedOffset.height = -1*(innerGeometry.size.height - outerGeometry.size.height)
-                            }
-                        }
-                    // ... and here.
-                        .onChange(of: accumulatedOffset.width) { _ in
-                            if accumulatedOffset.width > 0 {
-                                accumulatedOffset.width = 0
-                            } else if abs(accumulatedOffset.width) > innerGeometry.size.width - outerGeometry.size.width {
-                                accumulatedOffset.width = -1*(innerGeometry.size.width - outerGeometry.size.width)
-                            }
+                    Color.clear
+                        .onChange(of: innerGeometry.size) { newSize in
+                            innerGeometrySize = newSize
                         }
                 })
-                // The actual offset of the view is applied here, depending on the axis.
+            // The actual offset of the view is applied here, depending on the axis.
                 .offset(x: axes.contains(.horizontal) ? accumulatedOffset.width + offset.width : 0, y: axes.contains(.vertical) ? accumulatedOffset.height + offset.height : 0)
-                // Currently only offset and accumulated offset changes are animated
-                .animation(.spring(), value: offset)
-                .animation(.spring(), value: accumulatedOffset)
-                // Scrolling is triggered by the proxy's goTo method
+            // Scrolling is triggered by the proxy's goTo method
                 .onReceive(scrollDestination.$anchorPoint) { anchorPoint in
                     accumulatedOffset.height -= anchorPoint.y
                     accumulatedOffset.width -= anchorPoint.x
                 }
                 .preference(key: DestinationPreferenceKey.self, value: scrollDestination)
-                // Blocking is set by the blocking modifier
+            // Blocking is set by the blocking modifier
                 .onPreferenceChange(BlockScrollingPreferenceKey.self) { blockScrolling in
                     self.scrollingIsBlocked = blockScrolling
                 }
-                // The scrolling of this view needs to be simultaneous of other gestures to not block other gestures by default.
+            // The scrolling of this view needs to be simultaneous of other gestures to not block other gestures by default.
                 .simultaneousGesture(
                     // The minimum distance can be changed depending on the needs. 10 worked good so far.
                     DragGesture(minimumDistance: 10.0)
                         .onChanged { gesture in
                             offset = scrollingIsBlocked ? .zero : gesture.translation
                         }
-                        .onEnded { _ in
-                            // when using the onEnded parameter instead of the offset. values it gives a nice looking effect when releasing the dragged object. But it doesn't go back to zero, so might have to check that
+                        .onEnded { gesture in
+                            // Animating the end of scrolling, keep scrolling if velocity was high
+                            withAnimation(.easeOut(duration: 0.6)) {
+                                offset = scrollingIsBlocked ? .zero : gesture.predictedEndTranslation
+                            }
+                            // this doesn't need to be animated as this is just setting the same values as above for the next scrolling gesture
                             accumulatedOffset.height += offset.height
                             accumulatedOffset.width += offset.width
                             offset = .zero
+
+                            // ... in order to bounce back to the most outside view here ...
+                            // bounce back to the top, also if the view does not have enough items to fill the scroll view.
+                            if accumulatedOffset.height > 0 || innerGeometrySize.height <= outerGeometry.size.height {
+                                withAnimation(.spring()) {
+                                    accumulatedOffset.height = 0
+                                }
+                                // bounce to the bottom
+                            } else if abs(accumulatedOffset.height) > innerGeometrySize.height - outerGeometry.size.height {
+                                withAnimation(.spring()) {
+                                    accumulatedOffset.height = -1*(innerGeometrySize.height - outerGeometry.size.height)
+                                }
+                            }
+                            // ... and here.
+                            if accumulatedOffset.width > 0 {
+                                withAnimation(.spring()) {
+                                    accumulatedOffset.width = 0
+                                }
+                            } else if abs(accumulatedOffset.width) > innerGeometrySize.width - outerGeometry.size.width {
+                                withAnimation(.spring()) {
+                                    accumulatedOffset.width = -1*(innerGeometrySize.width - outerGeometry.size.width)
+                                }
+                            }
                         }
                 )
         }
