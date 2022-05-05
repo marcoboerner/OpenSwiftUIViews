@@ -23,7 +23,7 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
         self.didDropCompletion = didDropCompletion
     }
 
-    @State var internalChildID: UUID = UUID()
+    @State private var internalChildID: UUID = UUID()
 
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
 

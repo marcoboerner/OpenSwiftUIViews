@@ -18,11 +18,11 @@ public extension View {
 struct OnOpenDrag<T: Hashable>: ViewModifier {
 
     let internalID: UUID = UUID()
-    @State var gestureValue: GestureValue = GestureValue()
+    @State private var gestureValue: GestureValue = GestureValue()
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
 
     var didStartDragging: () -> [T]
-    @State var scale: CGFloat = 1.0
+    @State private var scale: CGFloat = 1.0
 
     func body(content: Content) -> some View {
 

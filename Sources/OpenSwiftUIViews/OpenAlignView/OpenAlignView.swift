@@ -17,7 +17,7 @@ public struct OpenAlignView<Content>: View where Content: View {
         self.content = content
     }
 
-    @State var openAlignState: OpenAlignState = OpenAlignState()
+    @State private var openAlignState: OpenAlignState = OpenAlignState()
 
     public var content: () -> Content
 
@@ -27,9 +27,6 @@ public struct OpenAlignView<Content>: View where Content: View {
                 self.openAlignState.alignLocations = alignLocations
             }
             .onPreferenceChange(OpenAlignMaxXOffsetsPreferenceKeys.self) { identifiableMaxX in
-
-                print("received:", identifiableMaxX.maxX, "id: ", identifiableMaxX.id)
-
                 // => I might be able to use this here to make sure only the relevant values are published, somehow.
                 self.openAlignState.alignedXOffsets[identifiableMaxX.id] = identifiableMaxX.maxX
             }
@@ -59,7 +56,6 @@ struct OpenAlignPreferenceKey: PreferenceKey, Equatable {
     }
     static var defaultValue: [DoubleIdentifiableLocation] = []
 }
-
 
 struct OpenAlignMaxXOffsetsPreferenceKeys: PreferenceKey, Equatable {
     static func reduce(value: inout IdentifiableMaxX, nextValue: () -> IdentifiableMaxX) {

@@ -42,8 +42,8 @@ private struct OpenRelativePosition: ViewModifier {
 
     let coordinateSpace: CoordinateSpace
 
-    @State var localPosition: CGPoint = .zero
-    @State var targetPosition: CGPoint = .zero
+    @State private var localPosition: CGPoint = .zero
+    @State private var targetPosition: CGPoint = .zero
 
     func body(content: Content) -> some View {
 

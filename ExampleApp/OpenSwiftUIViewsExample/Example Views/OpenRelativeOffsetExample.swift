@@ -8,8 +8,8 @@ import OpenSwiftUIViews
 
 struct OpenRelativeOffsetExample: View {
 
-    @State var targetFrame: CGRect = .zero
-    @State var tapped: Bool = false
+    @State private var targetFrame: CGRect = .zero
+    @State private var tapped: Bool = false
 
     var body: some View {
         ZStack {

@@ -9,7 +9,7 @@ import OpenSwiftUIViews
 
 struct OpenScrollViewExample: View {
 
-    @State var goTo: Int = 50
+    @State private var goTo: Int = 50
 
     var body: some View {
         VStack {

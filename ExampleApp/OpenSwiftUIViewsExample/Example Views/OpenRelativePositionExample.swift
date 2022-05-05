@@ -8,8 +8,8 @@ import OpenSwiftUIViews
 
 struct OpenRelativePositionExample: View {
 
-    @State var targetFrame: CGRect = .zero
-    @State var tapped: Bool = false
+    @State private var targetFrame: CGRect = .zero
+    @State private var tapped: Bool = false
 
     var body: some View {
             VStack {

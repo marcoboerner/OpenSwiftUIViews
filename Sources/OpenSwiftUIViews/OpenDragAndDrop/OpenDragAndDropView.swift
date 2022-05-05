@@ -27,7 +27,7 @@ public struct OpenDragAndDropView<Content>: View where Content: View {
         self.content = content
     }
 
-    @State var openDragAndDropState: OpenDragAndDropState = OpenDragAndDropState()
+    @State private var openDragAndDropState: OpenDragAndDropState = OpenDragAndDropState()
 
     var content: () -> Content
 

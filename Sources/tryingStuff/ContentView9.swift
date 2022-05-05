@@ -9,7 +9,7 @@
 //
 //struct ContentView9: View {
 //
-//    @State var goTo: Int = 25
+//    @State private var goTo: Int = 25
 //
 //    var body: some View {
 //        VStack {
@@ -50,7 +50,7 @@
 //
 //struct CustomScrollViewReader<Content>: View where Content: View {
 //
-//    @State var frames: [AnyHashable: CGRect] = [:]
+//    @State private var frames: [AnyHashable: CGRect] = [:]
 //    @StateObject var scrollDestination = ScrollDestination()
 //
 //    var content: (CustomScrollViewProxy) -> Content
@@ -71,7 +71,7 @@
 //
 //    static let customScrollViewCoordinateSpaceName = "CustomScrollView"
 //
-//    @State var positions: [AnyHashable: CGRect]
+//    @State private var positions: [AnyHashable: CGRect]
 //    @ObservedObject var scrollDestination: ScrollDestination
 //
 //    public func scrollTo<ID>(_ id: ID, anchor: UnitPoint = .zero) where ID : Hashable {
@@ -114,7 +114,7 @@
 //    @State private var offset: CGSize = .zero
 //    @State private var accumulatedOffset: CGSize = .zero
 //
-//    @State var axis: Axis.Set = [.vertical]
+//    @State private var axis: Axis.Set = [.vertical]
 //    @EnvironmentObject private var scrollDestination: ScrollDestination
 //
 //    var content: () -> Content

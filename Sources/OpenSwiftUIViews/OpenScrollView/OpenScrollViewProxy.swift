@@ -14,7 +14,7 @@ public struct OpenScrollViewProxy {
 
     static let openScrollViewCoordinateSpaceName = "OpenScrollView"
 
-    @State var frames: [AnyHashable: CGRect]
+    var frames: [AnyHashable: CGRect]
     @ObservedObject var scrollDestination: ScrollDestination
 
     /// Scrolls to the location of the ID
