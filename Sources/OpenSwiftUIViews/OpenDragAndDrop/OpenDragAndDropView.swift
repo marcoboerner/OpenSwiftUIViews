@@ -11,14 +11,18 @@ class OpenDragAndDropState: ObservableObject, Equatable {
     static func == (lhs: OpenDragAndDropState, rhs: OpenDragAndDropState) -> Bool {
         lhs.dragLocation == rhs.dragLocation &&
         lhs.items == rhs.items &&
-        lhs.success == rhs.success
+        lhs.dragResult == rhs.dragResult
     }
 
     @Published var dragLocation: IdentifiableLocation = IdentifiableLocation()
     @Published var items: [AnyHashable] = []
-    @Published var success: Bool = false
+    @Published var dragResult: OpenDragResult? = nil
 }
 
+enum OpenDragResult: Equatable {
+    case success(AnyHashable)
+    case cancelled(AnyHashable)
+}
 
 // MARK: - Drag and Drop Reading
 
@@ -32,7 +36,7 @@ public struct OpenDragAndDropView<Content>: View where Content: View {
     var content: () -> Content
 
     public var body: some View {
-        return self.content()
+        self.content()
             .onPreferenceChange(OpenDragPreferenceKey.self) { dragLocation in
                 self.openDragAndDropState.dragLocation = dragLocation
             }

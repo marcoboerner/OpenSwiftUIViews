@@ -17,10 +17,9 @@ public extension View {
 
 struct OnOpenDrag<T: Hashable>: ViewModifier {
 
-    let internalID: UUID = UUID()
+    private let internalID: UUID = UUID()
     @State private var gestureValue: GestureValue = GestureValue()
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
-
     var didStartDragging: () -> [T]
     @State private var scale: CGFloat = 1.0
 
@@ -47,21 +46,7 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
         let dragGesture = DragGesture(minimumDistance: 0)
             .onChanged { gestureValue.offset = $0.translation }
             .onEnded { _ in
-                if openDragAndDropState.success { // this animation doesn't work yet as planned
-                    scale = 0.0
-                    gestureValue.offset = .zero
-                    withAnimation {
-                        scale = 1.0
-                    }
-                } else {
-                    withAnimation {
-                        scale = 1.0
-                        gestureValue.offset = .zero
-                        gestureValue.isDragging = false
-                    }
-                }
-
-                gestureValue.zIndex -= 100
+                gestureValue.isDragging = false
             }
 
         // The dragGesture will wait until the pressGesture has triggered after minimumDuration 1.0 seconds.
@@ -90,7 +75,28 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
                 if isDragging {
                     let draggedValues = didStartDragging()
                     openDragAndDropState.items = draggedValues
+                    openDragAndDropState.dragResult = nil
                 }
+            }
+            .onReceive(openDragAndDropState.$dragResult) { dragResult in
+                switch dragResult {
+                case .success(let id):
+                    guard id as? UUID == internalID else { return }
+                    scale = 0.01 // <- it is important to start with a value > 0.
+                    withAnimation {
+                        gestureValue.offset = .zero
+                        scale = 1.0
+                    }
+                case .cancelled(let id):
+                    guard id as? UUID == internalID else { return }
+                    withAnimation {
+                        scale = 1.0
+                        gestureValue.offset = .zero
+                    }
+                case nil:
+                    break
+                }
+                gestureValue.zIndex -= 100
             }
     }
 }

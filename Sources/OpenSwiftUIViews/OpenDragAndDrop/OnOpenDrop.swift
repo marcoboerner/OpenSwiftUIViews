@@ -49,9 +49,11 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
                             // If the dragged item changes, which could also due to a drop, potentially dropping the item
                             if dragLocation.id != newDragLocation.id, isTargeted {
                                 // returning the dropped items
-                                openDragAndDropState.success = true
+                                openDragAndDropState.dragResult = .success(dragLocation.id)
                                 didDropCompletion(openDragAndDropState.items.compactMap({ $0 as? T }))
                                 openDragAndDropState.items.removeAll()
+                            } else if dragLocation.id != newDragLocation.id {
+                                openDragAndDropState.dragResult = .cancelled(dragLocation.id)
                             }
 
                             // Activating the binding if a dragged item is over the drop area.
