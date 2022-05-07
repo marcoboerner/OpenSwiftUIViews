@@ -16,6 +16,7 @@
 		20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9E91025489BC200DF13DA /* OpenSwiftUIViewsExample.swift */; };
 		20F9E91525489BC400DF13DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91425489BC400DF13DA /* Assets.xcassets */; };
 		20F9E91825489BC400DF13DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F9E91725489BC400DF13DA /* Preview Assets.xcassets */; };
+		20FB18E32825D12500F7CC66 /* OpenDragAndDropExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB18E22825D12500F7CC66 /* OpenDragAndDropExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		20F9E91425489BC400DF13DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20F9E91725489BC400DF13DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20F9E91925489BC400DF13DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20FB18E22825D12500F7CC66 /* OpenDragAndDropExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDragAndDropExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */,
 				208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */,
 				201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */,
+				20FB18E22825D12500F7CC66 /* OpenDragAndDropExample.swift */,
 				208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */,
 				208CDB8027F789EC0025CD94 /* OpenAlignOffsetExample.swift */,
 			);
@@ -195,6 +198,7 @@
 				208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */,
 				20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */,
 				208CDB7B27F7563B0025CD94 /* OpenRelativeOffsetExample.swift in Sources */,
+				20FB18E32825D12500F7CC66 /* OpenDragAndDropExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

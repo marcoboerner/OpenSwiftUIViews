@@ -12,26 +12,27 @@ struct OpenSwiftUIViewsExample: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                VStack {
-                    Spacer()
+                VStack(spacing: 20) {
                     NavigationLink {
                         OpenRelativeOffsetExample()
                     } label: {
                         Text("OpenRelativeOffset Example")
                     }
-                    Spacer()
                     NavigationLink {
                         OpenRelativePositionExample()
                     } label: {
                         Text("OpenRelativePosition Example")
                     }
-                    Spacer()
                     NavigationLink {
                         OpenScrollViewExample()
                     } label: {
                         Text("OpenScrollView Example")
                     }
-                    Spacer()
+                    NavigationLink {
+                        OpenDragAndDropExample()
+                    } label: {
+                        Text("OpenDragAndDrop Example")
+                    }
                     NavigationLink {
                         OpenAlignOffsetExample()
                     } label: {
@@ -46,10 +47,10 @@ struct OpenSwiftUIViewsExample: App {
                                 .font(.footnote)
                         }
                     }
-                    Spacer()
+                }
                     .navigationTitle("OpenSwiftUIViews")
                     .navigationBarTitleDisplayMode(.inline)
-                }
+
             }
         }
     }
