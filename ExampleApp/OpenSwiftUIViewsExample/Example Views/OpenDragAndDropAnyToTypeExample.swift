@@ -7,7 +7,7 @@
 import SwiftUI
 import OpenSwiftUIViews
 
-struct OpenDragAndDropExample: View {
+struct OpenDragAndDropAnyToTypeExample: View {
 
     @State private var targeted: Bool = false
 
@@ -18,7 +18,7 @@ struct OpenDragAndDropExample: View {
                     Spacer()
                     VStack(spacing: 10) {
                         ForEach(0..<3, id: \.self) { id in
-                            TargetElement(label: "Drop destination #\(id)")
+                            AnyToTypeTargetElement(label: "Drop destination #\(id)")
                                 .frame(maxWidth: .infinity)
                         }
                     }
@@ -29,7 +29,7 @@ struct OpenDragAndDropExample: View {
                     Spacer()
                     LazyVStack(spacing: 10) {
                         ForEach(0..<5, id: \.self) { id in
-                            JustAnotherElement(stringNumber: "\(id)")
+                            JustAnyToTypeAnotherElement(stringNumber: "\(id)")
                                 .frame(maxWidth: .infinity)
                         }
                     }
@@ -40,23 +40,9 @@ struct OpenDragAndDropExample: View {
     }
 }
 
-class SomeValue: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    internal init(id: String) {
-        self.id = id
-    }
-    static func == (lhs: SomeValue, rhs: SomeValue) -> Bool {
-        lhs.id == rhs.id
-    }
-
-    let id: String
-}
-
 // MARK: - List Element
 
-struct JustAnotherElement: View {
+struct JustAnyToTypeAnotherElement: View {
 
     internal init(stringNumber: String) {
         self.stringNumber = stringNumber
@@ -73,13 +59,13 @@ struct JustAnotherElement: View {
                     .foregroundColor(.green)
             )
             .frame(width: 100, height: 100)
-            .onOpenDrag {
+            .onOpenDrag(dragIdentifier: "MyValue") {
                 return [someValue]
             }
     }
 }
 
-struct TargetElement: View {
+struct AnyToTypeTargetElement: View {
 
     var label: String
     @State private var hoover: Bool = false
@@ -91,8 +77,8 @@ struct TargetElement: View {
                     .foregroundColor(.green)
             )
             .foregroundColor(hoover ? Color.red : Color.black) // listening to the isDragging state.
-            .onOpenDrop(of: SomeValue.self , isTargeted: $hoover) { draggedItems in
-                print("dropped SomeValue: \(draggedItems.first?.id ?? "nothing")")
+            .onOpenDrop(of: SomeValue.self, dragIdentifier: "MyValue", isTargeted: $hoover) { draggedItems in
+                print("dropped SomeValue (from Any): \(draggedItems.first?.id ?? "nothing")")
             }
     }
 }
@@ -100,8 +86,8 @@ struct TargetElement: View {
 
 // MARK: - Preview
 
-struct OpenDragAndDropExample_Previews: PreviewProvider {
+struct OpenDragAndDropAnyToTypeExample_Previews: PreviewProvider {
     static var previews: some View {
-        OpenDragAndDropExample()
+        OpenDragAndDropAnyToTypeExample()
     }
 }

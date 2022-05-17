@@ -11,11 +11,13 @@ class OpenDragAndDropState: ObservableObject, Equatable {
     static func == (lhs: OpenDragAndDropState, rhs: OpenDragAndDropState) -> Bool {
         lhs.dragLocation == rhs.dragLocation &&
         lhs.items == rhs.items &&
+        lhs.anyItems.dragIdentifier == rhs.anyItems.dragIdentifier &&
         lhs.dragResult == rhs.dragResult
     }
 
     @Published var dragLocation: IdentifiableLocation = IdentifiableLocation()
     @Published var items: [AnyHashable] = []
+    @Published var anyItems: (dragIdentifier: AnyHashable, items: [Any]) = (AnyHashable(Int.zero), [])
     @Published var dragResult: OpenDragResult? = nil
 }
 

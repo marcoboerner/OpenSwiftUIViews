@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200EF68928341833001E60FF /* OpenDragAndDropAnyExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200EF68828341833001E60FF /* OpenDragAndDropAnyExample.swift */; };
+		200EF68B283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200EF68A283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift */; };
 		201ADE6527CFFA5800B15902 /* OpenScrollViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */; };
 		208CDB7727F7550B0025CD94 /* OpenSwiftUIViews in Frameworks */ = {isa = PBXBuildFile; productRef = 208CDB7627F7550B0025CD94 /* OpenSwiftUIViews */; };
 		208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		200EF68828341833001E60FF /* OpenDragAndDropAnyExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDragAndDropAnyExample.swift; sourceTree = "<group>"; };
+		200EF68A283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDragAndDropAnyToTypeExample.swift; sourceTree = "<group>"; };
 		201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenScrollViewExample.swift; sourceTree = "<group>"; };
 		208CDB7527F754FA0025CD94 /* OpenSwiftUIViews */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = OpenSwiftUIViews; path = ..; sourceTree = "<group>"; };
 		208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenRelativePositionExample.swift; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 				208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */,
 				201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */,
 				20FB18E22825D12500F7CC66 /* OpenDragAndDropExample.swift */,
+				200EF68828341833001E60FF /* OpenDragAndDropAnyExample.swift */,
+				200EF68A283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift */,
 				208CDB7E27F770B80025CD94 /* OpenAlignViewExample.swift */,
 				208CDB8027F789EC0025CD94 /* OpenAlignOffsetExample.swift */,
 			);
@@ -198,6 +204,8 @@
 				208CDB7A27F7563B0025CD94 /* OpenRelativePositionExample.swift in Sources */,
 				20F9E91125489BC200DF13DA /* OpenSwiftUIViewsExample.swift in Sources */,
 				208CDB7B27F7563B0025CD94 /* OpenRelativeOffsetExample.swift in Sources */,
+				200EF68928341833001E60FF /* OpenDragAndDropAnyExample.swift in Sources */,
+				200EF68B283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift in Sources */,
 				20FB18E32825D12500F7CC66 /* OpenDragAndDropExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

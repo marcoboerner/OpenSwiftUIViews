@@ -34,6 +34,16 @@ struct OpenSwiftUIViewsExample: App {
                         Text("OpenDragAndDrop Example")
                     }
                     NavigationLink {
+                        OpenDragAndDropAnyExample()
+                    } label: {
+                        Text("OpenDragAndDrop (Any) Example")
+                    }
+                    NavigationLink {
+                        OpenDragAndDropAnyToTypeExample()
+                    } label: {
+                        Text("OpenDragAndDrop (Any with Type) Example")
+                    }
+                    NavigationLink {
                         OpenAlignOffsetExample()
                     } label: {
                         Text("OpenAlignOffset Example")

@@ -11,6 +11,10 @@ public extension View {
     func onOpenDrag<T: Hashable>(_ didStartDragging: @escaping () -> [T]) -> some View {
         modifier(OnOpenDrag(didStartDragging: didStartDragging))
     }
+
+    func onOpenDrag(dragIdentifier: AnyHashable, _ didStartDragging: @escaping () -> [Any]) -> some View {
+        modifier(OnOpenDrag(dragIdentifierForAny: dragIdentifier, didStartDraggingAny: didStartDragging))
+    }
 }
 
 // MARK: - Gesture as ViewModifier
@@ -20,7 +24,9 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
     private let internalID: UUID = UUID()
     @State private var gestureValue: GestureValue = GestureValue()
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
-    var didStartDragging: () -> [T]
+    var didStartDragging: (() -> [T])?
+    var dragIdentifierForAny: T?
+    var didStartDraggingAny: (() -> [Any])?
     @State private var scale: CGFloat = 1.0
 
     func body(content: Content) -> some View {
@@ -73,8 +79,12 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
             .gesture(tapPressDragGesture)
             .onChange(of: gestureValue.isDragging) { isDragging in
                 if isDragging {
-                    let draggedValues = didStartDragging()
-                    openDragAndDropState.items = draggedValues
+                    if let didStartDragging = didStartDragging {
+                        openDragAndDropState.items = didStartDragging()
+                        // FIXME: - maybe make these optional and clear the other
+                    } else if let didStartDraggingAny = didStartDraggingAny, let dragIdentifierForAny = dragIdentifierForAny {
+                        openDragAndDropState.anyItems = (dragIdentifierForAny, didStartDraggingAny())
+                    }
                     openDragAndDropState.dragResult = nil
                 }
             }
