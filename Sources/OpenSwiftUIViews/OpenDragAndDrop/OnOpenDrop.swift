@@ -66,13 +66,14 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
                 GeometryReader { geometry in
                     Color.clear
                         .onReceive(openDragAndDropState.$dragLocation) { [dragLocation = openDragAndDropState.dragLocation] newDragLocation in
+
                             // Checking is not itself as being dragged through a drag modifier
                             guard internalChildID != newDragLocation.id as? UUID else { return }
 
                             // Checking if the currently dragged items match the expected type or the drag Identifiers match
                             guard openDragAndDropState.items.contains(where: { $0 as? T != nil }) || openDragAndDropState.anyItems.dragIdentifier == dragIdentifier else { return }
 
-                            // If the dragged item changes, which could also due to a drop, potentially dropping the item
+                            // If the dragged item changes, which could also due to a drop (new id = .inf), potentially dropping the item
                             if dragLocation.id != newDragLocation.id, isTargeted {
 
                                 if dragIdentifier != nil, let didDropCompletion = didDropCompletion {
@@ -91,9 +92,6 @@ struct OnOpenDrop<T: Hashable>: ViewModifier {
                                     didDropAnyCompletion(openDragAndDropState.anyItems.items)
                                     openDragAndDropState.anyItems = (AnyHashable(Int.zero), [])
                                 }
-
-                            } else if dragLocation.id != newDragLocation.id {
-                                openDragAndDropState.dragResult = .cancelled(dragLocation.id)
                             }
 
                             // Activating the binding if a dragged item is over the drop area.

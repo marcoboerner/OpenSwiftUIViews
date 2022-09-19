@@ -42,7 +42,7 @@ public class Location: ObservableObject, Equatable {
 
 public class IdentifiableLocation: Location {
     public static func == (lhs: IdentifiableLocation, rhs: IdentifiableLocation) -> Bool {
-        return lhs.frame == rhs.frame &&
+        lhs.frame == rhs.frame &&
         lhs.anchor == rhs.anchor &&
         lhs.id == rhs.id
     }
@@ -57,7 +57,7 @@ public class IdentifiableLocation: Location {
 
 public class DoubleIdentifiableLocation: Location {
     public static func == (lhs: DoubleIdentifiableLocation, rhs: DoubleIdentifiableLocation) -> Bool {
-        return lhs.frame == rhs.frame &&
+        lhs.frame == rhs.frame &&
         lhs.anchor == rhs.anchor &&
         lhs.id1 == rhs.id1 &&
         lhs.id2 == rhs.id2
@@ -75,7 +75,7 @@ public class DoubleIdentifiableLocation: Location {
 
 public class IdentifiableMaxX: Equatable {
     public static func == (lhs: IdentifiableMaxX, rhs: IdentifiableMaxX) -> Bool {
-        return lhs.id == rhs.id &&
+        lhs.id == rhs.id &&
         lhs.maxX == rhs.maxX
     }
 

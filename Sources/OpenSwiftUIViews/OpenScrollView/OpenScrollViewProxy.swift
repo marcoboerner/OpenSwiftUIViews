@@ -12,8 +12,6 @@ import SwiftUI
 /// Use the proxy to scroll to a specific location.
 public struct OpenScrollViewProxy {
 
-    static let openScrollViewCoordinateSpaceName = "OpenScrollView"
-
     var frames: [AnyHashable: CGRect]
     @ObservedObject var scrollDestination: ScrollDestination
 
@@ -62,7 +60,7 @@ public struct OpenScrollID<ID: Hashable>: ViewModifier {
             .background(
                 GeometryReader { geometry in
                     Color.clear
-                        .preference(key: LocationPreferenceKey.self, value: [value: geometry.frame(in: .named(OpenScrollViewProxy.openScrollViewCoordinateSpaceName))])
+                        .preference(key: LocationPreferenceKey.self, value: [value: geometry.frame(in: .named(K.openScrollViewCoordinateSpaceName))])
                 }
             )
     }

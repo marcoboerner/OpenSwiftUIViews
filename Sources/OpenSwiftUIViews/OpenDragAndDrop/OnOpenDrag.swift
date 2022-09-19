@@ -8,25 +8,29 @@
 import SwiftUI
 
 public extension View {
-    func onOpenDrag<T: Hashable>(_ didStartDragging: @escaping () -> [T]) -> some View {
-        modifier(OnOpenDrag(didStartDragging: didStartDragging))
+    func onOpenDrag<T: Hashable>(removalOffset: CGSize = CGSize(width: -1, height: -1), onRemove: (([T]) -> Void)? = nil, didStartDragging: @escaping () -> [T]) -> some View {
+        modifier(OnOpenDrag<T, Any>(removalOffset: removalOffset, didStartDragging: didStartDragging, onRemove: onRemove))
     }
 
-    func onOpenDrag(dragIdentifier: AnyHashable, _ didStartDragging: @escaping () -> [Any]) -> some View {
-        modifier(OnOpenDrag(dragIdentifierForAny: dragIdentifier, didStartDraggingAny: didStartDragging))
+    func onOpenDrag<A>(dragIdentifier: AnyHashable, removalOffset: CGSize = CGSize(width: -1, height: -1), onRemove: (([A]) -> Void)? = nil, didStartDragging: @escaping () -> [A]) -> some View {
+        modifier(OnOpenDrag(removalOffset: removalOffset, dragIdentifierForAny: dragIdentifier, didStartDraggingAny: didStartDragging, onRemoveAny: onRemove))
     }
 }
 
 // MARK: - Gesture as ViewModifier
 
-struct OnOpenDrag<T: Hashable>: ViewModifier {
+struct OnOpenDrag<T: Hashable, A>: ViewModifier {
 
     private let internalID: UUID = UUID()
     @State private var gestureValue: GestureValue = GestureValue()
     @EnvironmentObject var openDragAndDropState: OpenDragAndDropState
+    var removalOffset: CGSize
     var didStartDragging: (() -> [T])?
+    var onRemove: (([T]) -> Void)?
     var dragIdentifierForAny: T?
-    var didStartDraggingAny: (() -> [Any])?
+    var didStartDraggingAny: (() -> [A])?
+    var onRemoveAny: (([A]) -> Void)?
+
     @State private var scale: CGFloat = 1.0
 
     func body(content: Content) -> some View {
@@ -38,6 +42,7 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
             }
             .onEnded { _ in
                 gestureValue.isTapping = false
+
             }
 
         let pressGesture = LongPressGesture(minimumDuration: 0.3)
@@ -81,14 +86,21 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
                 if isDragging {
                     if let didStartDragging = didStartDragging {
                         openDragAndDropState.items = didStartDragging()
-                        // FIXME: - maybe make these optional and clear the other
                     } else if let didStartDraggingAny = didStartDraggingAny, let dragIdentifierForAny = dragIdentifierForAny {
                         openDragAndDropState.anyItems = (dragIdentifierForAny, didStartDraggingAny())
                     }
                     openDragAndDropState.dragResult = nil
+                } else if !isDragging && openDragAndDropState.dragResult == nil {
+                    if shouldRemove() {
+                        openDragAndDropState.dragResult = .removed(internalID)
+                    } else {
+                        openDragAndDropState.dragResult = .cancelled(internalID)
+                    }
                 }
             }
             .onReceive(openDragAndDropState.$dragResult) { dragResult in
+                guard let dragResult = dragResult else { return }
+
                 switch dragResult {
                 case .success(let id):
                     guard id as? UUID == internalID else { return }
@@ -99,15 +111,40 @@ struct OnOpenDrag<T: Hashable>: ViewModifier {
                     }
                 case .cancelled(let id):
                     guard id as? UUID == internalID else { return }
+
                     withAnimation {
                         scale = 1.0
                         gestureValue.offset = .zero
                     }
-                case nil:
-                    break
+                case .removed(let id):
+                    guard id as? UUID == internalID else { return }
+                    withAnimation {
+                        scale = 0.1
+                    }
+                    removedAction()
                 }
-                gestureValue.zIndex -= 100
             }
+    }
+
+    // MARK: - Helper
+
+    private func removedAction() {
+        // All this only happens when no drop has been detected anywhere and only if onRemove is set.
+        if let onRemove = onRemove, didStartDragging != nil, !openDragAndDropState.items.isEmpty {
+            onRemove(openDragAndDropState.items.compactMap({ $0 as? T }))
+            openDragAndDropState.items.removeAll()
+        } else if let onRemoveAny = onRemoveAny, didStartDraggingAny != nil || dragIdentifierForAny != nil {
+            onRemoveAny(openDragAndDropState.anyItems.items.compactMap({ $0 as? A }))
+            openDragAndDropState.anyItems = (AnyHashable(Int.zero), [])
+        }
+    }
+
+    private func shouldRemove() -> Bool {
+        (abs(gestureValue.offset.height) >= removalOffset.height || abs(gestureValue.offset.width) >= removalOffset.width) &&
+        (onRemove != nil || onRemoveAny != nil)
+    }
+    private func shouldNotRemove() -> Bool {
+        !shouldRemove()
     }
 }
 

@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+internal struct K {
+    static let openScrollViewCoordinateSpaceName: String = "OpenScrollView"
+}
+
 struct DestinationPreferenceKey: PreferenceKey {
     static func reduce(value: inout ScrollDestination, nextValue: () -> ScrollDestination) {}
     static var defaultValue: ScrollDestination = ScrollDestination()
@@ -109,6 +113,6 @@ public struct OpenScrollView<Content>: View where Content: View {
                         }
                 )
         }
-        .coordinateSpace(name: OpenScrollViewProxy.openScrollViewCoordinateSpaceName)
+        .coordinateSpace(name: K.openScrollViewCoordinateSpaceName)
     }
 }

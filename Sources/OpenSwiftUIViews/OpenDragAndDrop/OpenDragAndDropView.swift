@@ -12,18 +12,21 @@ class OpenDragAndDropState: ObservableObject, Equatable {
         lhs.dragLocation == rhs.dragLocation &&
         lhs.items == rhs.items &&
         lhs.anyItems.dragIdentifier == rhs.anyItems.dragIdentifier &&
-        lhs.dragResult == rhs.dragResult
+        lhs.dragResult == rhs.dragResult &&
+        lhs.hasDropTarget == rhs.hasDropTarget
     }
 
     @Published var dragLocation: IdentifiableLocation = IdentifiableLocation()
     @Published var items: [AnyHashable] = []
     @Published var anyItems: (dragIdentifier: AnyHashable, items: [Any]) = (AnyHashable(Int.zero), [])
     @Published var dragResult: OpenDragResult? = nil
+    @Published var hasDropTarget: Bool = false
 }
 
 enum OpenDragResult: Equatable {
     case success(AnyHashable)
     case cancelled(AnyHashable)
+    case removed(AnyHashable)
 }
 
 // MARK: - Drag and Drop Reading
