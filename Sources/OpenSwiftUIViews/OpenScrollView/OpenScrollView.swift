@@ -19,7 +19,7 @@ struct DestinationPreferenceKey: PreferenceKey {
 
 // MARK: - OpenScrollView
 
-/// Use this ScrolLView to prevent other gestures from blocking of being blocked by default.
+/// Use this ScrolLView to prevent other gestures from blocking or being blocked by default.
 /// Clipping is deactivated by default and not all ScrollView features are implemented or will behave the same.
 public struct OpenScrollView<Content>: View where Content: View {
     public init(_ axes: Axis.Set = .vertical, content: @escaping () -> Content) {
