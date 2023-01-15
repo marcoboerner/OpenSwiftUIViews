@@ -36,6 +36,8 @@ public struct OpenScrollView<Content>: View where Content: View {
 
     @State private var innerGeometrySize: CGSize = .zero
 
+    @State private var outerGeometrySize: CGSize = .zero
+
     /// The scroll direction, supported are vertical and horizontal or both.
     private var axes: Axis.Set
 
@@ -51,6 +53,9 @@ public struct OpenScrollView<Content>: View where Content: View {
         // An outer geometry ...
         GeometryReader { outerGeometry in
             self.content()
+                .onChange(of: outerGeometry.size) { newSize in
+                    outerGeometrySize = newSize
+                }
                 .contentShape(Rectangle())
             // ... and inner geometry is used to calculate the final extreme positions of the view ...
                 .background(GeometryReader { innerGeometry in
@@ -90,14 +95,14 @@ public struct OpenScrollView<Content>: View where Content: View {
 
                             // ... in order to bounce back to the most outside view here ...
                             // bounce back to the top, also if the view does not have enough items to fill the scroll view.
-                            if accumulatedOffset.height > 0 || innerGeometrySize.height <= outerGeometry.size.height {
+                            if accumulatedOffset.height > 0 || innerGeometrySize.height <= outerGeometrySize.height {
                                 withAnimation(.spring()) {
                                     accumulatedOffset.height = 0
                                 }
                                 // bounce to the bottom
-                            } else if abs(accumulatedOffset.height) > innerGeometrySize.height - outerGeometry.size.height {
+                            } else if abs(accumulatedOffset.height) > innerGeometrySize.height - outerGeometrySize.height {
                                 withAnimation(.spring()) {
-                                    accumulatedOffset.height = -1*(innerGeometrySize.height - outerGeometry.size.height)
+                                    accumulatedOffset.height = -1*(innerGeometrySize.height - outerGeometrySize.height)
                                 }
                             }
                             // ... and here.
@@ -105,9 +110,9 @@ public struct OpenScrollView<Content>: View where Content: View {
                                 withAnimation(.spring()) {
                                     accumulatedOffset.width = 0
                                 }
-                            } else if abs(accumulatedOffset.width) > innerGeometrySize.width - outerGeometry.size.width {
+                            } else if abs(accumulatedOffset.width) > innerGeometrySize.width - outerGeometrySize.width {
                                 withAnimation(.spring()) {
-                                    accumulatedOffset.width = -1*(innerGeometrySize.width - outerGeometry.size.width)
+                                    accumulatedOffset.width = -1*(innerGeometrySize.width - outerGeometrySize.width)
                                 }
                             }
                         }
