@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20044F3D2975D5EC00023D58 /* NativeScrollViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20044F3C2975D5EC00023D58 /* NativeScrollViewExample.swift */; };
 		200EF68928341833001E60FF /* OpenDragAndDropAnyExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200EF68828341833001E60FF /* OpenDragAndDropAnyExample.swift */; };
 		200EF68B283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200EF68A283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift */; };
 		201ADE6527CFFA5800B15902 /* OpenScrollViewExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20044F3C2975D5EC00023D58 /* NativeScrollViewExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeScrollViewExample.swift; sourceTree = "<group>"; };
 		200EF68828341833001E60FF /* OpenDragAndDropAnyExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDragAndDropAnyExample.swift; sourceTree = "<group>"; };
 		200EF68A283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDragAndDropAnyToTypeExample.swift; sourceTree = "<group>"; };
 		201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenScrollViewExample.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 		208CDB7D27F757720025CD94 /* Example Views */ = {
 			isa = PBXGroup;
 			children = (
+				20044F3C2975D5EC00023D58 /* NativeScrollViewExample.swift */,
 				208CDB7927F7563B0025CD94 /* OpenRelativeOffsetExample.swift */,
 				208CDB7827F7563B0025CD94 /* OpenRelativePositionExample.swift */,
 				201ADE6427CFFA5800B15902 /* OpenScrollViewExample.swift */,
@@ -207,6 +210,7 @@
 				200EF68928341833001E60FF /* OpenDragAndDropAnyExample.swift in Sources */,
 				200EF68B283420E8001E60FF /* OpenDragAndDropAnyToTypeExample.swift in Sources */,
 				20FB18E32825D12500F7CC66 /* OpenDragAndDropExample.swift in Sources */,
+				20044F3D2975D5EC00023D58 /* NativeScrollViewExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

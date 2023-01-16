@@ -13,15 +13,21 @@ import SwiftUI
 public struct OpenScrollViewProxy {
 
     var frames: [AnyHashable: CGRect]
-    @ObservedObject var scrollDestination: ScrollDestination
+    @Binding var scrollDestination: ScrollDestination
+    @State private var lastFrame: CGRect?
 
     /// Scrolls to the location of the ID
     /// Set the ID on the views inside the OpenScrollView with the customID modifier.
-    public func scrollTo<ID>(_ id: ID, anchor: UnitPoint = .zero) where ID: Hashable {
+    public func scrollTo<ID>(_ id: ID?, anchor: UnitPoint = .zero) where ID: Hashable {
 
-        guard let frame = frames[id] else { return }
-
-        scrollDestination.setAnchorPoint(frame: frame, anchor: anchor)
+        if id == nil, var lastFrame {
+            lastFrame.size.width = -lastFrame.width
+            lastFrame.size.height = -lastFrame.height
+            scrollDestination.setAnchorPoint(frame: lastFrame, anchor: anchor)
+        } else if let frame = frames[id] {
+            lastFrame = frame
+            scrollDestination.setAnchorPoint(frame: frame, anchor: anchor)
+        }
     }
 }
 

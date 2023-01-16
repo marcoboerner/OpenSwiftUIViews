@@ -14,6 +14,11 @@ struct OpenSwiftUIViewsExample: App {
             NavigationView {
                 VStack(spacing: 20) {
                     NavigationLink {
+                        NativeScrollViewExample()
+                    } label: {
+                        Text("Native ScrollView Example")
+                    }
+                    NavigationLink {
                         OpenRelativeOffsetExample()
                     } label: {
                         Text("OpenRelativeOffset Example")

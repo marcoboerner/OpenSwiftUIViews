@@ -18,6 +18,8 @@
 
 ### OpenScrollView
 
+#### As of early 2023 I recommend in most cases the native scroll view and scroll view reader with the UIKit scroll view override. See the example app for a basic implementation. Using simultaneous gestures, it seems other gestures (Not currently in the example app) or the scrolling are also no longer blocked if you use the right combination of gestures in recent iOS versions.
+
 A _non gesture blocking_, _non clipping by default_ custom scroll view implementation with example code.
 
 This is an attempt for a custom scroll view in SwiftUI that will not block other gestures or be blocked by other gestures unless specified with a view modifier. I tried to implement some of the other scroll view features like a scroll view reader and proxy as well.
@@ -34,9 +36,13 @@ Similar to the drag and drop capabilities that SwiftUI provides but only meant f
 
 ### OpenAlignView
 
+#### Introduced at WWDC 2022, there is now also a native version for that.
+
 Allows to align the size of the frames of _multiple_ views from multiple stacks in rows and cols.
 
 ### OpenAlignOffset
+
+#### Introduced at WWDC 2022, there is now also a native version for that.
 
 Aligns the offset of _multiple_ views organized in rows and cols, aligning both axes.
 

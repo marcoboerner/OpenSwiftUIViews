@@ -24,7 +24,7 @@ public struct OpenScrollViewReader<Content>: View where Content: View {
 
     public var body: some View {
 
-        let openScrollViewProxy = OpenScrollViewProxy(frames: frames, scrollDestination: scrollDestination)
+        let openScrollViewProxy = OpenScrollViewProxy(frames: frames, scrollDestination: $scrollDestination)
 
         return self.content(openScrollViewProxy)
             .onPreferenceChange(DestinationPreferenceKey.self) { destination in
